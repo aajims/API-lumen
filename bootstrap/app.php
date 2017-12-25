@@ -56,13 +56,13 @@ $app->singleton(
 | route or middleware that'll be assigned to some specific routes.
 |
 */
-// $app->middleware([
-//    App\Http\Middleware\ExampleMiddleware::class
-// ]);
+$app->middleware([
+    App\Http\Middleware\ExampleMiddleware::class,
+]);
 
 $app->routeMiddleware([
     'bar_auth' => \App\Http\Bar\Middleware\Authenticate::class,
-    'foo_auth' => App\Http\Foo\Middleware\Authenticate::class,
+    'foo_auth' => \App\Http\Foo\Middleware\Authenticate::class,
 ]);
 
 /*

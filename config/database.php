@@ -2,6 +2,14 @@
 
 return [
     'default'     => 'homestead',
+
+    /**
+     * No table name set on execute migration in Lumen.
+     *
+     * @see https://stackoverflow.com/questions/32879392/no-table-name-set-on-execute-migration-in-lumen
+     * @see https://stackoverflow.com/questions/32879392/no-table-name-set-on-execute-migration-in-lumen
+     */
+    'migrations'  => 'migrations',
     'connections' => [
         'homestead' => [
             'driver'    => env('HOMESTEAD_CONNECTION'),

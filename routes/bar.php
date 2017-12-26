@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @var \Laravel\Lumen\Routing\Router $router
+ */
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -13,5 +17,8 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
-
-$router->get('/list', 'ExampleController@listAction');
+$router->post('login', 'AuthenticateController@loginAction');
+$router->post('logout', 'AuthenticateController@logoutAction');
+$router->post('refresh', 'AuthenticateController@refreshAction');
+$router->post('me', 'AuthenticateController@meAction');
+$router->get('list', 'ExampleController@listAction');

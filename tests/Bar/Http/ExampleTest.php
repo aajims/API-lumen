@@ -1,7 +1,11 @@
 <?php
 
+namespace Tests\Bar\Http;
+
+use App\Http\Bar\Controllers\ExampleController;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
+use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
@@ -12,10 +16,21 @@ class ExampleTest extends TestCase
      */
     public function testExample()
     {
-        $this->get('/');
+        $this->get('/bar');
 
         $this->assertEquals(
             $this->app->version(), $this->response->getContent()
         );
+    }
+
+    /**
+     * @return void
+     */
+    public function testListAction()
+    {
+        $controller = new ExampleController();
+        $array = $controller->listAction();
+
+        self::assertArrayHasKey('bar', $array);
     }
 }

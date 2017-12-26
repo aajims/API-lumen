@@ -3,8 +3,8 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 try {
-    (new Dotenv\Dotenv(__DIR__ . '/../'))->load();
-} catch (Dotenv\Exception\InvalidPathException $e) {
+    (new \Dotenv\Dotenv(__DIR__ . '/../'))->load();
+} catch (\Dotenv\Exception\InvalidPathException $e) {
     //
 }
 
@@ -18,7 +18,7 @@ try {
 | application as an "IoC" container and router for this framework.
 |
 */
-$app = new Laravel\Lumen\Application(
+$app = new \Laravel\Lumen\Application(
     realpath(__DIR__ . '/../')
 );
 
@@ -37,13 +37,13 @@ $app->withEloquent();
 |
 */
 $app->singleton(
-    Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\Exceptions\Handler::class
+    \Illuminate\Contracts\Debug\ExceptionHandler::class,
+    \App\Exceptions\Handler::class
 );
 
 $app->singleton(
-    Illuminate\Contracts\Console\Kernel::class,
-    App\Console\Kernel::class
+    \Illuminate\Contracts\Console\Kernel::class,
+    \App\Console\Kernel::class
 );
 
 /*
@@ -56,13 +56,10 @@ $app->singleton(
 | route or middleware that'll be assigned to some specific routes.
 |
 */
-$app->middleware([
-    App\Http\Middleware\ExampleMiddleware::class,
-]);
+// $app->middleware(\App\Http\Middleware\AuthenticateMiddleware::class);
 
 $app->routeMiddleware([
-    'bar_auth' => \App\Http\Bar\Middleware\Authenticate::class,
-    'foo_auth' => \App\Http\Foo\Middleware\Authenticate::class,
+    'auth' => \App\Http\Middleware\AuthenticateMiddleware::class,
 ]);
 
 /*
@@ -75,9 +72,10 @@ $app->routeMiddleware([
 | totally optional, so you are not required to uncomment this line.
 |
 */
-// $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
-// $app->register(App\Providers\EventServiceProvider::class);
+// $app->register(\App\Providers\AppServiceProvider::class);
+$app->register(\App\Providers\AuthServiceProvider::class);
+// $app->register(\App\Providers\EventServiceProvider::class);
+$app->register(\Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -89,13 +87,20 @@ $app->routeMiddleware([
 | can respond to, as well as the controllers that may handle them.
 |
 */
+$app->configure('auth');
+$app->configure('jwt');
+
+/** Bar module route. */
 $app->router->group([
-    'prefix'    => 'bar',
-    'namespace' => 'App\Http\Bar\Controllers',
+    'prefix'     => 'bar',
+    'namespace'  => 'App\Http\Bar\Controllers',
+    'middleware' => 'auth',
 ], function ($router) use ($app) {
     $app->configure('bar');
     require __DIR__ . '/../routes/bar.php';
 });
+
+/** Foo module route. */
 $app->router->group([
     'prefix'    => 'foo',
     'namespace' => 'App\Http\Foo\Controllers',

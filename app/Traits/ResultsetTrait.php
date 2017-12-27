@@ -19,7 +19,7 @@ trait ResultsetTrait
     public static function successResponse(
         array $array = [],
         string $msg = 'OK',
-        int $code = 20020,
+        int $code = 20000,
         int $status = 200
     )
     : JsonResponse {
@@ -39,7 +39,7 @@ trait ResultsetTrait
     public static function warningResponse(
         array $array = [],
         string $msg = 'OK',
-        int $code = 40020,
+        int $code = 40000,
         int $status = 200
     )
     : JsonResponse {

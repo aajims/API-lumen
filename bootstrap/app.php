@@ -115,12 +115,17 @@ $routes = [
         'namespace'  => 'App\Http\Bar\Controllers',
         'middleware' => 'auth:api',
     ],
-    'foo'  => [
+
+    'foo' => [
         'prefix'     => 'foo',
         'namespace'  => 'App\Http\Foo\Controllers',
         'middleware' => 'auth:api',
     ],
 ];
+$app->router->get(
+    '/',
+    'App\Http\Auth\Controllers\DefaultController@listAction'
+);
 $app->router->post(
     '/auth/authorize',
     'App\Http\Auth\Controllers\AuthenticateController@authorizeAction'

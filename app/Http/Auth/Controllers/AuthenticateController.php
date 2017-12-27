@@ -109,6 +109,6 @@ class AuthenticateController extends Controller
             'uid'    => $this->guard()->user()->getAuthIdentifier(),
         ];
 
-        return self::successResponse($array);
+        return self::successResponse($array, 'User token');
     }
 }

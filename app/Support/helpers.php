@@ -16,6 +16,8 @@ if ( ! function_exists('config_path')) {
 
 if ( ! function_exists('mklog')) {
     /**
+     * Create log directory.
+     *
      * @param string|null $dir
      *
      * @return string
@@ -26,7 +28,7 @@ if ( ! function_exists('mklog')) {
         $m = date('m');
         $d = date('d');
         $a = date('a') . '.log';
-        $format = 'logs/%s/%s/%s/' . $dir;
+        $format = $dir ? 'logs/%s/%s/%s/' . $dir : 'logs/%s/%s/%s';
         $path = sprintf($format, $y, $m, $d);
         $path = storage_path($path);
         $filesystem = new \Symfony\Component\Filesystem\Filesystem();

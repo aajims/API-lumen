@@ -149,7 +149,10 @@ foreach ($routes as $key => $item) {
 */
 
 $app->configureMonologUsing(function (\Monolog\Logger $logger) {
-    $handler = new \Monolog\Handler\StreamHandler(mklog());
+    $maxFiles = 7;
+    $filename = storage_path('logs/runtime.log');
+    $handler = new \Monolog\Handler\RotatingFileHandler($filename, $maxFiles);
+    $handler->setFilenameFormat('{date}-{filename}', 'Y-m-d');
     $formatter = new \Monolog\Formatter\LineFormatter(null, null, true, true);
     $handler->setFormatter($formatter);
     $logger->pushHandler($handler);

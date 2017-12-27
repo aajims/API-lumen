@@ -18,6 +18,7 @@ try {
 | application as an "IoC" container and router for this framework.
 |
 */
+
 $app = new \Laravel\Lumen\Application(
     realpath(__DIR__ . '/../')
 );
@@ -36,6 +37,7 @@ $app->withEloquent();
 | your own bindings here if you like or you can make another file.
 |
 */
+
 $app->singleton(
     \Illuminate\Contracts\Debug\ExceptionHandler::class,
     \App\Exceptions\Handler::class
@@ -56,6 +58,7 @@ $app->singleton(
 | route or middleware that'll be assigned to some specific routes.
 |
 */
+
 // $app->middleware(\App\Http\Middleware\AuthenticateMiddleware::class);
 
 $app->routeMiddleware([
@@ -72,6 +75,7 @@ $app->routeMiddleware([
 | totally optional, so you are not required to uncomment this line.
 |
 */
+
 // $app->register(\App\Providers\AppServiceProvider::class);
 $app->register(\App\Providers\AuthServiceProvider::class);
 // $app->register(\App\Providers\EventServiceProvider::class);
@@ -87,8 +91,26 @@ $app->register(\Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 | can respond to, as well as the controllers that may handle them.
 |
 */
+
 $app->configure('auth');
 $app->configure('jwt');
+
+/*
+|--------------------------------------------------------------------------
+| Auth module route.
+|--------------------------------------------------------------------------
+|
+| Auth module.
+|
+*/
+
+$app->router->group([
+    'prefix'     => 'auth',
+    'namespace'  => 'App\Http\Auth\Controllers',
+    'middleware' => 'auth',
+], function ($router) use ($app) {
+    require __DIR__ . '/../routes/auth.php';
+});
 
 /** Bar module route. */
 $app->router->group([

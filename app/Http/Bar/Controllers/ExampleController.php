@@ -20,6 +20,7 @@ class ExampleController extends BarController
      */
     public function listAction()
     {
+        return config_path();
         $bar = config('bar');
         $user = DB::connection('framework')
             ->select('SELECT * FROM user LIMIT 1');

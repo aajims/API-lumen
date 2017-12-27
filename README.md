@@ -18,7 +18,10 @@ Laravel Lumen is a stunningly fast PHP micro-framework for building web applicat
 
 ### 开发环境
 
-> [Laravel Homestead](https://laravel.com/docs/master/homestead)
+> * [英文官网](https://laravel.com/docs/master/homestead)
+> * [中文网站](https://docs.golaravel.com/docs/5.0/homestead/)
+> * [GitHub](https://github.com/laravel/homestead)
+> * [如何搞定 Homestead](https://github.com/imajinyun/notes/blob/master/01-mac/1.2-开发工具/1.2.13-homestead.md)
 
 一般情况下, 请使用 `Laravel` 官方提供的 `Homestead` 集成开发环境
 
@@ -31,6 +34,9 @@ $ composer install
 ```
 
 ### 项目配置
+
+
+- 重命名 `.evn.example`
 
 ```bash
 $ cp .env.example .env
@@ -64,4 +70,10 @@ CACHE_DRIVER=file
 QUEUE_DRIVER=sync
 
 JWT_SECRET=...
+```
+
+- 生成 `JWT_SECRET`
+
+```bash
+$ php artisan jwt:generate
 ```

@@ -28,4 +28,8 @@ class ExampleController extends BarController
 
         return self::successResponse($user);
     }
+
+    public function logAction()
+    {
+    }
 }

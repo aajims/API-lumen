@@ -115,12 +115,17 @@ $routes = [
         'namespace'  => 'App\Http\Bar\Controllers',
         'middleware' => 'auth:api',
     ],
-    'foo'  => [
+
+    'foo' => [
         'prefix'     => 'foo',
         'namespace'  => 'App\Http\Foo\Controllers',
         'middleware' => 'auth:api',
     ],
 ];
+$app->router->get(
+    '/',
+    'App\Http\Auth\Controllers\DefaultController@listAction'
+);
 $app->router->post(
     '/auth/authorize',
     'App\Http\Auth\Controllers\AuthenticateController@authorizeAction'
@@ -133,5 +138,23 @@ foreach ($routes as $key => $item) {
         require __DIR__ . '/../routes/' . $key . '.php';
     });
 }
+
+/*
+|--------------------------------------------------------------------------
+| Custom The Application Monolog
+|--------------------------------------------------------------------------
+|
+| Configuration monolog.
+|
+*/
+
+$app->configureMonologUsing(function (\Monolog\Logger $logger) {
+    $handler = new \Monolog\Handler\StreamHandler(mklog());
+    $formatter = new \Monolog\Formatter\LineFormatter(null, null, true, true);
+    $handler->setFormatter($formatter);
+    $logger->pushHandler($handler);
+
+    return $logger;
+});
 
 return $app;

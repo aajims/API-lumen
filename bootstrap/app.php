@@ -139,4 +139,22 @@ foreach ($routes as $key => $item) {
     });
 }
 
+/*
+|--------------------------------------------------------------------------
+| Custom The Application Monolog
+|--------------------------------------------------------------------------
+|
+| Configuration monolog.
+|
+*/
+
+$app->configureMonologUsing(function (\Monolog\Logger $logger) {
+    $handler = new \Monolog\Handler\StreamHandler(mklog());
+    $formatter = new \Monolog\Formatter\LineFormatter(null, null, true, true);
+    $handler->setFormatter($formatter);
+    $logger->pushHandler($handler);
+
+    return $logger;
+});
+
 return $app;

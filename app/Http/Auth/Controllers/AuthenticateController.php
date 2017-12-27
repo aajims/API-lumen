@@ -79,6 +79,10 @@ class AuthenticateController extends Controller
         return $this->responseWithToken($token);
     }
 
+    public function getAction()
+    {
+    }
+
     /**
      * Get the guard to be used during authentication.
      *

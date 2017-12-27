@@ -12,16 +12,18 @@ trait ResultsetTrait
      * @param array  $array
      * @param string $msg
      * @param int    $code
+     * @param int    $status
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public static function successResponse(
         array $array = [],
         string $msg = 'OK',
-        int $code = 20020
+        int $code = 20020,
+        int $status = 200
     )
     : JsonResponse {
-        return self::response(true, $array, $msg, $code);
+        return self::response($array, $msg, $code, $status);
     }
 
     /**
@@ -30,41 +32,43 @@ trait ResultsetTrait
      * @param array  $array
      * @param string $msg
      * @param int    $code
+     * @param int    $status
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public static function warningResponse(
         array $array = [],
         string $msg = 'OK',
-        int $code = 40020
+        int $code = 40020,
+        int $status = 200
     )
     : JsonResponse {
-        return self::response(false, $array, $msg, $code);
+        return self::response($array, $msg, $code, $status);
     }
 
     /**
      * JSON response.
      *
-     * @param bool   $status
      * @param array  $array
      * @param string $msg
      * @param int    $code
+     * @param int    $status
      *
      * @return \Illuminate\Http\JsonResponse
      */
     private static function response(
-        bool $status,
         array $array,
         string $msg,
-        int $code
-    ) {
+        int $code,
+        int $status
+    )
+    : JsonResponse {
         $result = [
-            'status' => $status,
-            'data'   => $array,
-            'msg'    => $msg,
-            'code'   => $code,
+            'code' => $code,
+            'msg'  => $msg,
+            'data' => $array,
         ];
 
-        return response()->json($result, 200);
+        return response()->json($result, $status);
     }
 }

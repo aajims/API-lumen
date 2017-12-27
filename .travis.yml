@@ -8,6 +8,17 @@ php:
 
 sudo: false
 
+services:
+  - mysql
+
+cache:
+  directories:
+    - vendor
+    - $HOME/.composer/cache
+
+before_install:
+  - mysql -u root -e 'CREATE DATABASE homestead;'
+
 install: travis_retry composer install --no-interaction --prefer-source
 
 script:

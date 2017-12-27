@@ -17,4 +17,3 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
-$router->addRoute(['GET', 'POST'], 'authorize', 'AuthenticateController@authorizeAction');

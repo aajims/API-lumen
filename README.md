@@ -77,3 +77,11 @@ JWT_SECRET=...
 ```bash
 $ php artisan jwt:generate
 ```
+
+- 创建数据库
+
+```bash
+$ touch database/database.sqlite 
+$ php artisan migrate
+$ php artisan db:seed
+```

@@ -83,6 +83,18 @@ $app->register(\Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
+| Load The Application Configurations
+|--------------------------------------------------------------------------
+|
+| Please add some global configuration information here.
+|
+*/
+
+$app->configure('auth');
+$app->configure('jwt');
+
+/*
+|--------------------------------------------------------------------------
 | Load The Application Routes
 |--------------------------------------------------------------------------
 |
@@ -92,43 +104,34 @@ $app->register(\Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 |
 */
 
-$app->configure('auth');
-$app->configure('jwt');
+$routes = [
+    'auth' => [
+        'prefix'     => 'auth',
+        'namespace'  => 'App\Http\Auth\Controllers',
+        'middleware' => 'auth:api',
+    ],
+    'bar'  => [
+        'prefix'     => 'bar',
+        'namespace'  => 'App\Http\Bar\Controllers',
+        'middleware' => 'auth:api',
+    ],
+    'foo'  => [
+        'prefix'     => 'foo',
+        'namespace'  => 'App\Http\Foo\Controllers',
+        'middleware' => 'auth:api',
+    ],
+];
+$app->router->post(
+    '/auth/authorize',
+    'App\Http\Auth\Controllers\AuthenticateController@authorizeAction'
+);
 
-/*
-|--------------------------------------------------------------------------
-| Auth module route.
-|--------------------------------------------------------------------------
-|
-| Auth module.
-|
-*/
+foreach ($routes as $key => $item) {
+    $app->router->group($item, function ($router) use ($app, $key) {
+        $app->configure($key);
 
-$app->router->group([
-    'prefix'     => 'auth',
-    'namespace'  => 'App\Http\Auth\Controllers',
-    'middleware' => 'auth',
-], function ($router) use ($app) {
-    require __DIR__ . '/../routes/auth.php';
-});
-
-/** Bar module route. */
-$app->router->group([
-    'prefix'     => 'bar',
-    'namespace'  => 'App\Http\Bar\Controllers',
-    'middleware' => 'auth',
-], function ($router) use ($app) {
-    $app->configure('bar');
-    require __DIR__ . '/../routes/bar.php';
-});
-
-/** Foo module route. */
-$app->router->group([
-    'prefix'    => 'foo',
-    'namespace' => 'App\Http\Foo\Controllers',
-], function ($router) use ($app) {
-    $app->configure('foo');
-    require __DIR__ . '/../routes/foo.php';
-});
+        require __DIR__ . '/../routes/' . $key . '.php';
+    });
+}
 
 return $app;

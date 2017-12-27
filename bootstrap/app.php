@@ -148,8 +148,9 @@ foreach ($routes as $key => $item) {
 |
 */
 
+dd(env('APP_MAX_LOG_FILE'));die;
 $app->configureMonologUsing(function (\Monolog\Logger $logger) {
-    $maxFiles = 7;
+    $maxFiles = env('APP_MAX_LOG_FILE');
     $filename = storage_path('logs/runtime.log');
     $handler = new \Monolog\Handler\RotatingFileHandler($filename, $maxFiles);
     $handler->setFilenameFormat('{date}-{filename}', 'Y-m-d');

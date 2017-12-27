@@ -2,10 +2,13 @@
 
 namespace App\Http\Bar\Controllers;
 
+use App\Traits\ResultsetTrait;
 use Illuminate\Support\Facades\DB;
 
 class ExampleController extends BarController
 {
+    use ResultsetTrait;
+
     /**
      * Create a new controller instance.
      *
@@ -16,19 +19,13 @@ class ExampleController extends BarController
     }
 
     /**
-     * @return array
+     * @return \Illuminate\Http\JsonResponse
      */
     public function listAction()
     {
-        return config_path();
-        $bar = config('bar');
         $user = DB::connection('framework')
-            ->select('SELECT * FROM user LIMIT 1');
-        $array = [
-            'bar'  => $bar,
-            'user' => $user,
-        ];
+            ->select('SELECT * FROM user LIMIT 2');
 
-        return $array;
+        return self::successResponse($user);
     }
 }

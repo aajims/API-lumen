@@ -11,7 +11,7 @@ sudo: false
 install: travis_retry composer install --no-interaction --prefer-source
 
 script:
-  - php vendor/bin/phpunit -c phpunit.xml
+  - php vendor/bin/phpunit -c phpunit.xml.dist
 
 notifications:
   email: false

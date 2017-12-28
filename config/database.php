@@ -17,24 +17,38 @@ return [
 
     'connections' => [
         'homestead' => [
+            'read'      => [
+                'host' => env('HOMESTEAD_HOST'),
+            ],
+            'write'     => [
+                'host' => env('HOMESTEAD_HOST'),
+            ],
             'driver'    => env('HOMESTEAD_CONNECTION'),
-            'host'      => env('HOMESTEAD_HOST'),
+            'sticky'    => env('HOMESTEAD_STICKY'),
             'port'      => env('HOMESTEAD_PORT'),
             'database'  => env('HOMESTEAD_DATABASE'),
             'username'  => env('HOMESTEAD_USERNAME'),
             'password'  => env('HOMESTEAD_PASSWORD'),
             'charset'   => env('HOMESTEAD_CHARSET'),
             'collation' => env('HOMESTEAD_COLLATION'),
+            'prefix'    => env('HOMESTEAD_PREFIX'),
         ],
         'framework' => [
+            'read'      => [
+                'host' => env('HOMESTEAD_HOST'),
+            ],
+            'write'     => [
+                'host' => env('HOMESTEAD_HOST'),
+            ],
             'driver'    => env('FRAMEWORK_CONNECTION'),
-            'host'      => env('FRAMEWORK_HOST'),
+            'sticky'    => env('FRAMEWORK_STICKY'),
             'port'      => env('FRAMEWORK_PORT'),
             'database'  => env('FRAMEWORK_DATABASE'),
             'username'  => env('FRAMEWORK_USERNAME'),
             'password'  => env('FRAMEWORK_PASSWORD'),
             'charset'   => env('FRAMEWORK_CHARSET'),
             'collation' => env('FRAMEWORK_COLLATION'),
+            'prefix'    => env('FRAMEWORK_PREFIX'),
         ],
     ],
 

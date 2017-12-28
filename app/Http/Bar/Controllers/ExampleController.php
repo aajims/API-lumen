@@ -23,9 +23,14 @@ class ExampleController extends BarController
      */
     public function listAction()
     {
+        $bar = config('bar');
         $user = DB::connection('homestead')
             ->select('SELECT * FROM user LIMIT 10');
+        $array = [
+            'bar'  => $bar,
+            'user' => $user,
+        ];
 
-        return self::successResponse($user);
+        return self::successResponse($array);
     }
 }

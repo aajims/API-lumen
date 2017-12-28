@@ -2,10 +2,13 @@
 
 namespace App\Http\Foo\Controllers;
 
+use App\Traits\ResultsetTrait;
 use Illuminate\Support\Facades\DB;
 
 class ExampleController extends FooController
 {
+    use ResultsetTrait;
+
     /**
      * Create a new controller instance.
      *
@@ -16,7 +19,7 @@ class ExampleController extends FooController
     }
 
     /**
-     * @return array
+     * @return \Illuminate\Http\JsonResponse
      */
     public function listAction()
     {
@@ -28,6 +31,6 @@ class ExampleController extends FooController
             'user' => $user,
         ];
 
-        return $array;
+        return self::successResponse($array);
     }
 }

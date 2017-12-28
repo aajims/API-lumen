@@ -40,6 +40,6 @@ class AuthenticateTest extends TestCase
         $parameter = ['email' => 'lumen@qq.com', 'password' => 'password'];
         $response = $this->call('POST', '/auth/authorize', $parameter);
 
-        self::assertTrue($response->isOk());
+        self::assertFalse($response->isOk());
     }
 }

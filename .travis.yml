@@ -16,6 +16,9 @@ cache:
     - vendor
     - $HOME/.composer/cache
 
+services:
+  - mysql
+
 before_script:
   - mv .env.example .env
   - chmod -R 777 app/storage

@@ -19,11 +19,11 @@ cache:
 services:
   - mysql
 
-before_script:
+before_install:
   - mv .env.example .env
   - chmod -R 777 app/storage
-  - chmod +x .travis.db.sh; ./.travis.db.sh
   - mkdir -p build/logs
+  - chmod +x .travis.db.sh; ./.travis.db.sh
   - travis_retry composer install --no-interaction --prefer-source
 
 install:

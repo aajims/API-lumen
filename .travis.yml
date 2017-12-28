@@ -20,6 +20,9 @@ services:
   - mysql
 
 before_install:
+  - mysql -u root -e "CREATE DATABASE homestead;"
+  - mysql -u root -e "CREATE USER 'homestead'@'%' IDENTIFIED BY 'secret';";
+  - mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'homestead'@'%' WITH GRANT OPTION;"
   - cp .env.example .env
   - mkdir -p build/logs
   - travis_retry composer install --no-interaction --prefer-source

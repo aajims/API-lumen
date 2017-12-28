@@ -126,6 +126,9 @@ $app->router->get(
     '/',
     'App\Http\Auth\Controllers\DefaultController@listAction'
 );
+$app->router->get('/version', function () use ($app) {
+    return $app->router->app->version();
+});
 $app->router->post(
     '/auth/authorize',
     'App\Http\Auth\Controllers\AuthenticateController@authorizeAction'

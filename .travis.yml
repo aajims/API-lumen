@@ -8,9 +8,6 @@ php:
 
 sudo: false
 
-services:
-  - mysql
-
 cache:
   directories:
     - vendor

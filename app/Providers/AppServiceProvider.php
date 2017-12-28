@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
             });
         }
 
+        // https://github.com/laravel/framework/issues/17508
         Schema::defaultStringLength(128);
     }
 

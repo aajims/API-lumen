@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,6 +22,9 @@ class AppServiceProvider extends ServiceProvider
                 \Log::log(env('APP_LOG_LEVEL', 'error'), $query->sql, $context);
             });
         }
+
+        // https://github.com/laravel/framework/issues/17508
+        Schema::defaultStringLength(128);
     }
 
     /**

@@ -49,7 +49,7 @@ class AuthenticateController extends Controller
             $credentials = $request->only('email', 'password');
             $token = $this->jwtAuth->attempt($credentials);
 
-            if ( ! $token) {
+            if (! $token) {
                 return self::successResponse(
                     [],
                     'user not found.',

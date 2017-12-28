@@ -129,10 +129,15 @@ $app->router->get(
 $app->router->get('/version', function () use ($app) {
     return $app->router->app->version();
 });
-$app->router->post(
+$app->router->addRoute(
+    ['GET', 'POST'],
     '/auth/authorize',
     'App\Http\Auth\Controllers\AuthenticateController@authorizeAction'
 );
+// $app->router->post(
+//     '/auth/authorize',
+//     'App\Http\Auth\Controllers\AuthenticateController@authorizeAction'
+// );
 
 foreach ($routes as $key => $item) {
     $app->router->group($item, function ($router) use ($app, $key) {

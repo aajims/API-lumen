@@ -8,15 +8,25 @@ php:
 
 sudo: false
 
+matrix:
+  fast_finish: true
+
 cache:
   directories:
     - vendor
     - $HOME/.composer/cache
 
+before_script:
+  - mkdir -p build/logs
+
 install: travis_retry composer install --no-interaction --prefer-source
 
 script:
-  - php vendor/bin/phpunit -c phpunit.xml.dist
+  - composer require php-coveralls/php-coveralls
+  - php vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover build/logs/clover.xml
+
+after_success:
+    - travis_retry php vendor/bin/coveralls -v
 
 notifications:
   email: false

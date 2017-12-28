@@ -20,8 +20,7 @@ services:
   - mysql
 
 before_install:
-  - mv .env.example .env
-  - chmod -R 777 app/storage
+  - cp .env.example .env
   - mkdir -p build/logs
   - chmod +x .travis.db.sh; ./.travis.db.sh
   - travis_retry composer install --no-interaction --prefer-source

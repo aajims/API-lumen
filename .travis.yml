@@ -19,12 +19,14 @@ cache:
 before_script:
   - mv .env.example .env
   - chmod -R 777 app/storage
+  - chmod +x .travis.db.sh; ./.travis.db.sh
   - mkdir -p build/logs
   - travis_retry composer install --no-interaction --prefer-source
 
 install:
-  - php artisan migrate --no-interaction -vvv
-  - php artisan migrate:rollback --no-interaction -vvv
+  - php artisan migrate --env=local --no-interaction -vvv
+  - php artisan db:seed --env=local --no-interaction -vvv
+  - php artisan migrate:rollback --env=local --no-interaction -vvv
 
 script:
   - composer require php-coveralls/php-coveralls

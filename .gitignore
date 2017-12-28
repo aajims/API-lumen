@@ -1,4 +1,7 @@
 /.idea
 /database/database.sqlite
 .env
+/.phpstorm.meta.php
+/_ide_helper.php
+/lumen_ide_helper.php
 /vendor

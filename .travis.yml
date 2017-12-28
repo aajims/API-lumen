@@ -17,9 +17,14 @@ cache:
     - $HOME/.composer/cache
 
 before_script:
+  - mv .env.example .env
+  - chmod -R 777 app/storage
   - mkdir -p build/logs
+  - travis_retry composer install --no-interaction --prefer-source
 
-install: travis_retry composer install --no-interaction --prefer-source
+install:
+  - php artisan migrate --no-interaction -vvv
+  - php artisan migrate:rollback --no-interaction -vvv
 
 script:
   - composer require php-coveralls/php-coveralls

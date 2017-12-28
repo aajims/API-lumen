@@ -32,7 +32,7 @@ class AuthenticateController extends Controller
     }
 
     /**
-     * Authorize action.
+     * User authorize token.
      *
      * @param \Illuminate\Http\Request $request
      *
@@ -49,10 +49,10 @@ class AuthenticateController extends Controller
             $credentials = $request->only('email', 'password');
             $token = $this->jwtAuth->attempt($credentials);
 
-            if ( ! $token) {
+            if (! $token) {
                 return self::successResponse(
                     [],
-                    'user not found.',
+                    'The user not found.',
                     Tip::AUTH_USER_NOT_FOUND
                 );
             }
@@ -79,8 +79,54 @@ class AuthenticateController extends Controller
         return $this->responseWithToken($token);
     }
 
-    public function getAction()
+    /**
+     * User information.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Tymon\JWTAuth\Exceptions\JWTException
+     */
+    public function userAction(Request $request)
     {
+        $this->jwtAuth->parseToken();
+        $user = $this->jwtAuth->user()->toArray();
+
+        return self::successResponse($user);
+    }
+
+    /**
+     * User access token information.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Tymon\JWTAuth\Exceptions\JWTException
+     */
+    public function infoAction(Request $request)
+    {
+        $this->jwtAuth->parseToken();
+        $array = $this->jwtAuth->getPayload()->toArray();
+        $array['token'] = $this->jwtAuth->getToken()->get();
+        $array['uid'] = $this->jwtAuth->user()->getJWTIdentifier();
+
+        return self::successResponse($array);
+    }
+
+    /**
+     * User refresh token.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Tymon\JWTAuth\Exceptions\JWTException
+     */
+    public function refreshAction(Request $request)
+    {
+        $this->jwtAuth->parseToken();
+        $token = $this->jwtAuth->refresh();
+
+        return $this->responseWithToken($token);
     }
 
     /**

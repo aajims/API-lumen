@@ -1,0 +1,239 @@
+{
+	"info": {
+		"name": "lumen-api-test",
+		"_postman_id": "b38ff57d-7778-e3dd-6252-5f3ac241c642",
+		"description": "# LUMEN API 测试\n\n***\n\n这是一些对 `Lumen` API 的测试程序\n\n## 文档说明\n\n### 请求方法\n\n| 方法 | 说明 | 备注 |\n| --- | --- | --- |\n| `get` |  |  |\n| `post` |  |  |\n| `put` |  |  |\n| `patch` |  |  |\n| `delete` |  |  |\n| `options` |  |  |\n\n\n### 响应结果\n\n> 所有结果集均返回 `JSON` 格式\n\n| 方式 | 类型 | 说明 | 备注 |\n| --- | --- | --- | --- |\n| `code` | `Integer` | 响应代码 | 成功: `20000`, 失败: `40000`, 其它查询接口 |\n| `msg` | `String` | 响应消息 | 返回结果的简单说明 |\n| `data` | `Array`| 响应的结果 | 返回结果的详细情况 |",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "请求认证令牌",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "lumen@qq.com",
+							"description": "The user email",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "lumen",
+							"description": "The user password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://dev.lumen.com/auth/authorize",
+					"protocol": "http",
+					"host": [
+						"dev",
+						"lumen",
+						"com"
+					],
+					"path": [
+						"auth",
+						"authorize"
+					]
+				},
+				"description": "## 请求参数\n\n| 参数 | 说明 | 备注 |\n| --- | --- | --- |\n| `email` | 用户邮箱 |  |\n| `password` | 用户密码 |  |\n\n## 响应结果\n\n```json\n{\n    \"code\": 20000,\n    \"msg\": \"User token\",\n    \"data\": {\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vZGV2Lmx1bWVuLmNvbS9hdXRoL2F1dGhvcml6ZSIsImlhdCI6MTUxNDQ1MjkwMCwiZXhwIjoxNTE0NDU2NTAwLCJuYmYiOjE1MTQ0NTI5MDAsImp0aSI6IldSVTUxVThBVE1Wc1lKOTMiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.h0jz1kb9K7p8k00SYqu4xBnsO5QVtr8_KCOMOyomm5M\",\n        \"type\": \"bearer\",\n        \"expire\": 3600,\n        \"uid\": 1\n    }\n}\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "获取Homestead库数据",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://dev.lumen.com/bar/list",
+					"protocol": "http",
+					"host": [
+						"dev",
+						"lumen",
+						"com"
+					],
+					"path": [
+						"bar",
+						"list"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "获取Framework库数据",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://dev.lumen.com/foo/list",
+					"protocol": "http",
+					"host": [
+						"dev",
+						"lumen",
+						"com"
+					],
+					"path": [
+						"foo",
+						"list"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "刷新认证令牌",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://dev.lumen.com/auth/refresh",
+					"protocol": "http",
+					"host": [
+						"dev",
+						"lumen",
+						"com"
+					],
+					"path": [
+						"auth",
+						"refresh"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "获取用户信息",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://dev.lumen.com/auth/user",
+					"protocol": "http",
+					"host": [
+						"dev",
+						"lumen",
+						"com"
+					],
+					"path": [
+						"auth",
+						"user"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "获取令牌信息",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://dev.lumen.com/auth/info",
+					"protocol": "http",
+					"host": [
+						"dev",
+						"lumen",
+						"com"
+					],
+					"path": [
+						"auth",
+						"info"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "f1efd0e5-563f-492d-bd0e-5db42bc3136d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "76ee94e0-0b9e-45d7-b595-f675e477848e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

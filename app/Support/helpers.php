@@ -1,6 +1,6 @@
 <?php
 
-if ( ! function_exists('config_path')) {
+if (! function_exists('config_path')) {
     /**
      * Get the configuration path.
      *
@@ -14,7 +14,7 @@ if ( ! function_exists('config_path')) {
     }
 }
 
-if ( ! function_exists('mklog')) {
+if (! function_exists('mklog')) {
     /**
      * Create log directory.
      *
@@ -34,7 +34,7 @@ if ( ! function_exists('mklog')) {
         $filesystem = new \Symfony\Component\Filesystem\Filesystem();
 
         try {
-            if ( ! $filesystem->exists($path)) {
+            if (! $filesystem->exists($path)) {
                 $filesystem->mkdir($path);
             }
         } catch (\Symfony\Component\Filesystem\Exception\IOException $e) {

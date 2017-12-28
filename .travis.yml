@@ -22,7 +22,6 @@ services:
 before_install:
   - cp .env.example .env
   - mkdir -p build/logs
-  - chmod +x .travis.db.sh; ./.travis.db.sh
   - travis_retry composer install --no-interaction --prefer-source
 
 install:

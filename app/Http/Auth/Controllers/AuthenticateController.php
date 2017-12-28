@@ -52,7 +52,7 @@ class AuthenticateController extends Controller
             if (! $token) {
                 return self::successResponse(
                     [],
-                    'user not found.',
+                    'The user not found.',
                     Tip::AUTH_USER_NOT_FOUND
                 );
             }

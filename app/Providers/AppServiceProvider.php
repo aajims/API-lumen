@@ -18,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
         if ($isDbListen) {
             DB::listen(function ($query) {
                 $context = ['bind' => $query->bindings, 'time' => $query->time];
-                \Log::log($query->sql, $context);
+                \Log::log(env('APP_LOG_LEVEL', 'error'), $query->sql, $context);
             });
         }
     }

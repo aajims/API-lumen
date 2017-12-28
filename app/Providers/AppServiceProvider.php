@@ -14,10 +14,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        DB::listen(function ($query) {
-            // $context = ['bind' => $query->bindings, 'time' => $query->time];
-            // \Log::info($query->sql, $context);
-        });
+        $isDbListen = env('APP_DB_LISTEN', config('APP_DB_LISTEN', false));
+        if ($isDbListen) {
+            DB::listen(function ($query) {
+                $context = ['bind' => $query->bindings, 'time' => $query->time];
+                \Log::log($query->sql, $context);
+            });
+        }
     }
 
     /**
@@ -27,6 +30,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // Lumen IDE helper for PhpStorm.
+        if ($this->app->environment() !== 'production') {
+            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+        }
     }
 }

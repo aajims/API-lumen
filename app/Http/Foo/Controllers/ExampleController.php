@@ -22,7 +22,7 @@ class ExampleController extends FooController
     {
         $foo = config('foo');
         $user = DB::connection('framework')
-            ->select('SELECT * FROM user LIMIT 1');
+            ->select('SELECT * FROM user LIMIT 10');
         $array = [
             'foo'  => $foo,
             'user' => $user,

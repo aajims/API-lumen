@@ -23,13 +23,9 @@ class ExampleController extends BarController
      */
     public function listAction()
     {
-        $user = DB::connection('framework')
-            ->select('SELECT * FROM user LIMIT 2');
+        $user = DB::connection('homestead')
+            ->select('SELECT * FROM user LIMIT 10');
 
         return self::successResponse($user);
-    }
-
-    public function logAction()
-    {
     }
 }

@@ -33,6 +33,15 @@ $ cd ./lumen-api
 $ composer install
 ```
 
+### 工具助手
+
+> [GitHub](https://github.com/barryvdh/laravel-ide-helper)
+
+```bash
+$ php artisan ide-helper:generate
+$ php artisan ide-helper:meta
+```
+
 ### 项目配置
 
 

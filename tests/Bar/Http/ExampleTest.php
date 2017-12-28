@@ -17,8 +17,7 @@ class ExampleTest extends TestCase
     {
         $this->get('/bar');
 
-        $this->assertEquals(
-            $this->app->version(), $this->response->getContent()
-        );
+        $expect = '{"code":200105,"msg":"Unauthorized","data":[]}';
+        self::assertEquals($expect, $this->response->getContent());
     }
 }

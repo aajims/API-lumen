@@ -7,25 +7,39 @@ use Tests\TestCase;
 class AuthenticateTest extends TestCase
 {
     /**
-     * A basic test example.
+     * Test access default action.
      *
      * @return void
      */
     public function testDefaultAction()
     {
-        $this->get('/auth');
+        $this->get('/');
+
+        self::assertEquals(200, $this->response->getStatusCode());
+    }
+
+    /**
+     * Test get version action.
+     */
+    public function testVersionAction()
+    {
+        $this->get('/version');
 
         $this->assertEquals(
             $this->app->version(), $this->response->getContent()
         );
     }
 
+    /**
+     * Test user authorize action.
+     *
+     * @return void
+     */
     public function testAuthorizeAction()
     {
         $parameter = ['email' => 'lumen@qq.com', 'password' => 'password'];
-        $response = $this->call('GET', '/auth/authorize', $parameter);
+        $response = $this->call('POST', '/auth/authorize', $parameter);
 
-        $expect = '{"status":true,"data":[],"msg":"user not found.","code":200101}';
-        self::assertEquals($expect, $response->getContent());
+        self::assertTrue($response->isOk());
     }
 }

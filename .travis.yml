@@ -21,7 +21,7 @@ services:
 
 before_install:
 
-  - phpenv config-rm xdebug.ini || true
+  # - phpenv config-rm xdebug.ini || true
 
   # initialize databases
   - mysql -u root -e "CREATE DATABASE homestead;"

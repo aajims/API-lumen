@@ -54,13 +54,13 @@ class DefaultController extends Controller
         ksort($array);
 
         /** 日志记录 */
-        Log::emergency($msg, ['context' => 'Other helpful information']);
+        Log::emergency($msg, ['context' => 'Emergency helpful information']);
         Log::alert($msg);
-        Log::critical($msg, ['context' => 'Other helpful information']);
+        Log::critical($msg, ['context' => 'Critical helpful information']);
         Log::error($msg);
-        Log::warning($msg, ['context' => 'Other helpful information']);
+        Log::warning($msg, ['context' => 'Warning helpful information']);
         Log::notice($msg);
-        Log::info($msg, ['context' => 'Other helpful information']);
+        Log::info($msg, ['context' => 'Info helpful information']);
         Log::debug($msg);
 
         return self::successResponse($array, $msg);

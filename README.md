@@ -112,7 +112,7 @@ namespace App\Http\Bar\Controllers;
 use App\Traits\ResultsetTrait;
 use Illuminate\Http\Request;
 
-class TestController extends BaseController
+class TestController extends BarController
 {
     use ResultsetTrait;
 

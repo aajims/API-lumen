@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console;
+namespace App\Console\Scaffolds;
 
 use Symfony\Component\Console\Input\InputOption;
 
@@ -127,7 +127,7 @@ class ControllerCommand extends AbstractCommand
     {
         $controller = ucwords(str_singular($class)) . self::SUFFIX;
         $subject = str_replace(
-            'ExampleController',
+            'ExampleClass',
             $controller,
             $subject
         );

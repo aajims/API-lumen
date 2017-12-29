@@ -2,15 +2,11 @@
 
 namespace App\Providers;
 
-use App\Console\ControllerCommand;
+use App\Console\Scaffolds\ControllerCommand;
 use Illuminate\Support\ServiceProvider;
 
 class CommandServiceProvider extends ServiceProvider
 {
-    protected $commands
-        = [
-            'KeyGenerate' => 'command.key.generate',
-        ];
 
     /**
      * Some development environment commands.
@@ -37,6 +33,11 @@ class CommandServiceProvider extends ServiceProvider
         $this->registerCommand($this->devCommands);
     }
 
+    /**
+     * Register some commands.
+     *
+     * @param array $commands
+     */
     protected function registerCommand(array $commands)
     {
         foreach (array_keys($commands) as $command) {

@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Console;
+namespace App\Console\Scaffolds;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Str;
 
 class AbstractCommand extends Command
 {

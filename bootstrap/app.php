@@ -134,10 +134,6 @@ $app->router->addRoute(
     '/auth/authorize',
     'App\Http\Auth\Controllers\AuthenticateController@authorizeAction'
 );
-// $app->router->post(
-//     '/auth/authorize',
-//     'App\Http\Auth\Controllers\AuthenticateController@authorizeAction'
-// );
 
 foreach ($routes as $key => $item) {
     $app->router->group($item, function ($router) use ($app, $key) {

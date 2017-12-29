@@ -5,7 +5,7 @@ namespace ExampleNamespace;
 use App\Traits\ResultsetTrait;
 use Illuminate\Http\Request;
 
-class ExampleController extends BaseController
+class ExampleClass extends BaseClass
 {
     use ResultsetTrait;
 
@@ -18,6 +18,8 @@ class ExampleController extends BaseController
      */
     public function listAction(Request $request)
     {
-        return self::successResponse([$request->path()]);
+        $array = [];
+
+        return self::successResponse($array);
     }
 }

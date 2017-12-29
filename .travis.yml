@@ -48,7 +48,6 @@ before_script:
   - php artisan migrate:rollback --env=local --no-interaction -vvv
 
 script:
-  - composer require php-coveralls/php-coveralls
   - php vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover=build/logs/clover.xml
 
 after_success:

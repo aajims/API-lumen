@@ -16,7 +16,7 @@ class ControllerCommand extends AbstractCommand
     protected $name = 'make:controller';
 
     /**
-     * The name and signature of the console command.
+     * The console command signature.
      *
      * @var string
      */
@@ -54,7 +54,7 @@ class ControllerCommand extends AbstractCommand
             return false;
         }
         $this->files->makeDirectory(dirname($path), 0777, true, true);
-        $this->files->put($path, $this->buildClass($module, $controller));
+        $this->files->put($path, $this->build($module, $controller));
 
         $this->info($this->type . ' created successfully.');
     }
@@ -87,50 +87,37 @@ class ControllerCommand extends AbstractCommand
      * @return mixed|string
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
-    protected function buildClass(string $module, string $controller)
+    protected function build(string $module, string $controller)
     {
         $template = $this->files->get($this->getTemplate());
-        $template = $this->replaceNamespace($template, $module);
-        $template = $this->replaceClass($template, $controller);
+        $template = $this->replace($template, $module, $controller);
 
         return $template;
     }
 
     /**
-     * Replace namespace name.
+     * Replace some placeholder.
      *
      * @param string $subject
      * @param string $namespace
+     * @param string $class
      *
-     * @return mixed
+     * @return mixed|string
      */
-    protected function replaceNamespace(string & $subject, string $namespace)
-    {
+    protected function replace(
+        string & $subject,
+        string $namespace,
+        string $class
+    ) {
         $subject = str_replace(
             'ExampleNamespace',
             $this->getNamespace($namespace),
             $subject
         );
-
-        return $subject;
-    }
-
-    /**
-     * Replace class name.
-     *
-     * @param string $subject
-     * @param string $class
-     *
-     * @return mixed
-     */
-    protected function replaceClass(string & $subject, string $class)
-    {
-        $controller = ucwords(str_singular($class)) . self::SUFFIX;
-        $subject = str_replace(
-            'ExampleClass',
-            $controller,
-            $subject
-        );
+        $class = ucwords(str_singular($class)) . self::SUFFIX;
+        $pattern = '/[A-Za-z]+?Class\b/';
+        $replacements = [$class, $namespace . self::SUFFIX];
+        $subject = preg_replace_array($pattern, $replacements, $subject);
 
         return $subject;
     }

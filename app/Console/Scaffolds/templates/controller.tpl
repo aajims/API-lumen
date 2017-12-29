@@ -5,7 +5,7 @@ namespace ExampleNamespace;
 use App\Traits\ResultsetTrait;
 use Illuminate\Http\Request;
 
-class ExampleClass extends BaseClass
+class ExampleClass extends AbstractClass
 {
     use ResultsetTrait;
 

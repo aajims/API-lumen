@@ -49,8 +49,8 @@ class AuthenticateTest extends TestCase
      */
     public function testAuthorizeAction()
     {
-        $parameter = ['email' => 'lumen@qq.com', 'password' => 'password'];
-        $response = $this->call('GET', '/auth/authorize', $parameter);
+        $parameter = ['email' => 'lumen@qq.com', 'password' => 'lumen'];
+        $response = $this->call('POST', '/auth/authorize', $parameter);
 
         self::assertTrue($response->isOk());
     }

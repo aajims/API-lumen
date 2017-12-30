@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Console\Scaffolds\ConsoleCommand;
 use App\Console\Scaffolds\ControllerCommand;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,6 +16,7 @@ class CommandServiceProvider extends ServiceProvider
      */
     protected $devCommands
         = [
+            'Console'    => 'command.console.make',
             'Controller' => 'command.controller.make',
         ];
 
@@ -46,6 +48,18 @@ class CommandServiceProvider extends ServiceProvider
         }
 
         $this->commands(array_values($commands));
+    }
+
+    /**
+     * Register console command.
+     */
+    private function registerConsoleCommand()
+    {
+        if ($this->app->environment() !== 'production') {
+            $this->app->singleton('command.console.make', function ($app) {
+                return new ConsoleCommand($app['files']);
+            });
+        }
     }
 
     /**

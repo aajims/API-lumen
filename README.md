@@ -20,3 +20,7 @@
 ## Documentation
 
 See the [WIKI](https://github.com/imajinyun/lumen-api/wiki) for documentation.
+
+## License
+
+The Lumen API is open-sourced software licensed under the [MIT](https://opensource.org/licenses/MIT) license

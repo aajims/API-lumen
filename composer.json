@@ -1,10 +1,9 @@
 {
-  "name": "laravel/lumen",
-  "description": "The Laravel Lumen Framework.",
+  "name": "imajinyun/lumen-api",
+  "description": "This is a RESTful API micro service based on Lumen framework.",
   "keywords": [
-    "framework",
-    "laravel",
-    "lumen"
+    "lumen",
+    "lumen-api"
   ],
   "license": "MIT",
   "type": "project",

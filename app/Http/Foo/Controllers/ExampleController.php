@@ -11,8 +11,6 @@ class ExampleController extends FooController
 
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {

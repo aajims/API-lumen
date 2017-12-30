@@ -18,6 +18,18 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
-$router->post('info', 'AuthenticateController@infoAction');
-$router->post('user', 'AuthenticateController@userAction');
-$router->post('refresh', 'AuthenticateController@refreshAction');
+$router->addRoute(
+    ['GET', 'POST'],
+    'info',
+    'AuthenticateController@infoAction'
+);
+$router->addRoute(
+    ['GET', 'POST'],
+    'user',
+    'AuthenticateController@userAction'
+);
+$router->addRoute(
+    ['GET', 'POST'],
+    'refresh',
+    'AuthenticateController@refreshAction'
+);

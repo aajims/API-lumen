@@ -43,8 +43,7 @@ before_script:
   - php --version
   - composer --version
 
-  - php artisan migrate --env=local --database=homestead
-  - php artisan migrate --env=local --no-interaction -vvv
+  - php artisan migrate --env=local --database=homestead --no-interaction -vvv
   - php artisan db:seed --env=local --no-interaction -vvv
   - php artisan migrate:rollback --env=local --no-interaction -vvv
 

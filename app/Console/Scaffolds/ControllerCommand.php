@@ -71,7 +71,7 @@ class ControllerCommand extends AbstractCommand
     {
         $ns = $this->laravel->getNamespace();
 
-        $module = 'Http\\' . ucfirst(str_singular($module)) . '\\Controllers';
+        $module = 'Http\\' . ucwords(str_singular($module)) . '\\Controllers';
         $ns = $isDir ? $module : ($ns . '\\' . $module);
         $namespace = str_replace('\\\\', '\\', $ns);
 

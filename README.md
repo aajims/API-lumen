@@ -9,6 +9,7 @@
 [![Build Status](https://travis-ci.org/imajinyun/lumen-api.svg?branch=master)](https://travis-ci.org/imajinyun/lumen-api)
 [![codecov](https://codecov.io/gh/imajinyun/lumen-api/branch/master/graph/badge.svg)](https://codecov.io/gh/imajinyun/lumen-api)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/imajinyun/lumen-api/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/imajinyun/lumen-api/?branch=master)
+[![StyleCI](https://styleci.io/repos/115325381/shield?branch=master)](https://styleci.io/repos/115325381)
 
 🔥 This is a RESTful API micro service based on Lumen framework.
 

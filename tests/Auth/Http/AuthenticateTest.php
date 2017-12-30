@@ -2,6 +2,7 @@
 
 namespace Tests\Auth\Http;
 
+use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class AuthenticateTest extends TestCase
@@ -15,7 +16,7 @@ class AuthenticateTest extends TestCase
     {
         $this->get('/');
 
-        self::assertEquals(200, $this->response->getStatusCode());
+        self::assertEquals(Response::HTTP_OK, $this->response->getStatusCode());
     }
 
     /**
@@ -38,7 +39,7 @@ class AuthenticateTest extends TestCase
         $parameter = ['token' => 'abc.xyz.test'];
         $response = $this->call('GET', '/auth/info', $parameter);
 
-        self::assertEquals(401, $response->status());
+        self::assertEquals(Response::HTTP_UNAUTHORIZED, $response->status());
     }
 
     /**

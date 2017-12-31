@@ -6,12 +6,11 @@
 
 ***
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/43a3f904740143fa8dc66d48a3732fe0)](https://www.codacy.com/app/imajinyun/lumen-api?utm_source=github.com&utm_medium=referral&utm_content=imajinyun/lumen-api&utm_campaign=badger)
-[![Build Status](https://travis-ci.org/imajinyun/lumen-api.svg?branch=master)](https://travis-ci.org/imajinyun/lumen-api)
-[![codecov](https://codecov.io/gh/imajinyun/lumen-api/branch/master/graph/badge.svg)](https://codecov.io/gh/imajinyun/lumen-api)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/imajinyun/lumen-api/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/imajinyun/lumen-api/?branch=master)
+[![Travis Branch Build Status](https://img.shields.io/travis/imajinyun/lumen-api/master.svg?style=flat-square)](https://travis-ci.org/imajinyun/lumen-api)
+[![Codecov Branch](https://img.shields.io/codecov/c/github/imajinyun/lumen-api/master.svg?style=flat-square)](https://codecov.io/gh/imajinyun/lumen-api)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/imajinyun/lumen-api/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/imajinyun/lumen-api)
 [![StyleCI](https://styleci.io/repos/115325381/shield?branch=master)](https://styleci.io/repos/115325381)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/655fc73e786543bd93ba84ec2723d588)](https://www.codacy.com/app/imajinyun/lumen-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=imajinyun/lumen-api&amp;utm_campaign=Badge_Grade)
+[![Codacy Branch Grade](https://img.shields.io/codacy/grade/655fc73e786543bd93ba84ec2723d588/master.svg?style=flat-square)](https://www.codacy.com/app/imajinyun/lumen-api/dashboard)
 
 🔥 This is a RESTful API micro application based on Lumen framework.
 

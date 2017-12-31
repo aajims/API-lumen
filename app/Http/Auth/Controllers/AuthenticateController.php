@@ -82,12 +82,10 @@ class AuthenticateController extends Controller
     /**
      * User information.
      *
-     * @param \Illuminate\Http\Request $request
-     *
      * @return \Illuminate\Http\JsonResponse
      * @throws \Tymon\JWTAuth\Exceptions\JWTException
      */
-    public function userAction(Request $request)
+    public function userAction()
     {
         $this->jwtAuth->parseToken();
         $user = $this->jwtAuth->user()->toArray();
@@ -98,12 +96,10 @@ class AuthenticateController extends Controller
     /**
      * User access token information.
      *
-     * @param \Illuminate\Http\Request $request
-     *
      * @return \Illuminate\Http\JsonResponse
      * @throws \Tymon\JWTAuth\Exceptions\JWTException
      */
-    public function infoAction(Request $request)
+    public function infoAction()
     {
         $this->jwtAuth->parseToken();
         $array = $this->jwtAuth->getPayload()->toArray();
@@ -116,12 +112,10 @@ class AuthenticateController extends Controller
     /**
      * User refresh token.
      *
-     * @param \Illuminate\Http\Request $request
-     *
      * @return \Illuminate\Http\JsonResponse
      * @throws \Tymon\JWTAuth\Exceptions\JWTException
      */
-    public function refreshAction(Request $request)
+    public function refreshAction()
     {
         $this->jwtAuth->parseToken();
         $token = $this->jwtAuth->refresh();

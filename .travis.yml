@@ -50,6 +50,10 @@ before_script:
 script:
   - php vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover=build/logs/clover.xml
 
+after_script:
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=clover build/logs/clover.xml
+
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 

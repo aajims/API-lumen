@@ -20,7 +20,10 @@ class ControllerCommand extends AbstractCommand
      *
      * @var string
      */
-    protected $signature = 'make:controller {module} {controller}';
+    protected $signature
+        = '
+        make:controller {module : Name of the module} {controller : Name of the controller}
+    ';
 
     /**
      * The console command description.

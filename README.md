@@ -10,6 +10,7 @@
 [![codecov](https://codecov.io/gh/imajinyun/lumen-api/branch/master/graph/badge.svg)](https://codecov.io/gh/imajinyun/lumen-api)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/imajinyun/lumen-api/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/imajinyun/lumen-api/?branch=master)
 [![StyleCI](https://styleci.io/repos/115325381/shield?branch=master)](https://styleci.io/repos/115325381)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/655fc73e786543bd93ba84ec2723d588)](https://www.codacy.com/app/imajinyun/lumen-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=imajinyun/lumen-api&amp;utm_campaign=Badge_Grade)
 
 🔥 This is a RESTful API micro application based on Lumen framework.
 

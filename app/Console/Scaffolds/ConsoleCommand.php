@@ -20,7 +20,7 @@ class ConsoleCommand extends AbstractCommand
      *
      * @var string
      */
-    protected $signature = 'make:console {console}';
+    protected $signature = 'make:console {console : Name of the console}';
 
     /**
      * The console command description.
@@ -38,6 +38,7 @@ class ConsoleCommand extends AbstractCommand
 
     public function handle()
     {
+        dd($this->getOptions());
         $console = $this->getConsoleName();
         $path = $this->getPath($console);
 

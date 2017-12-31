@@ -39,7 +39,7 @@ class ControllerCommand extends AbstractCommand
     /**
      * Handle the console command.
      *
-     * @return bool|mixed
+     * @return bool|null
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function handle()
@@ -63,63 +63,17 @@ class ControllerCommand extends AbstractCommand
      * Get the console command namespace.
      *
      * @param string $module
-     * @param bool   $isDir
+     * @param string $namespace
      *
-     * @return mixed
+     * @return string
      */
-    public function getNamespace(string $module, $isDir = false)
+    public function getNamespace(string $module, string $namespace = '')
     {
-        $ns = $this->laravel->getNamespace();
-
-        $module = 'Http\\' . ucwords(str_singular($module)) . '\\Controllers';
-        $ns = $isDir ? $module : ($ns . '\\' . $module);
-        $namespace = str_replace('\\\\', '\\', $ns);
+        $module = ucwords(str_singular(strtolower($module)));
+        $default = sprintf('Http\%s\Controllers', $module);
+        $namespace = $namespace ? ($namespace . $default) : $default;
 
         return $namespace;
-    }
-
-    /**
-     * Build class.
-     *
-     * @param string $module
-     * @param string $controller
-     *
-     * @return mixed|string
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     */
-    protected function build(string $module, string $controller)
-    {
-        $template = $this->files->get($this->getTemplate());
-        $template = $this->replace($template, $module, $controller);
-
-        return $template;
-    }
-
-    /**
-     * Replace some placeholder.
-     *
-     * @param string $subject
-     * @param string $namespace
-     * @param string $class
-     *
-     * @return mixed|string
-     */
-    protected function replace(
-        string & $subject,
-        string $namespace,
-        string $class
-    ) {
-        $subject = str_replace(
-            'ExampleNamespace',
-            $this->getNamespace($namespace),
-            $subject
-        );
-        $class = ucwords(str_singular($class)) . self::SUFFIX;
-        $pattern = '/[A-Za-z]+?Class\b/';
-        $replacements = [$class, $namespace . self::SUFFIX];
-        $subject = preg_replace_array($pattern, $replacements, $subject);
-
-        return $subject;
     }
 
     /**
@@ -156,7 +110,7 @@ class ControllerCommand extends AbstractCommand
      */
     protected function getPath(string $module, string $controller)
     {
-        $namespace = $this->getNamespace($module, true);
+        $namespace = $this->getNamespace($module);
         $namespace = str_replace('\\', '/', $namespace);
         $controller = $controller . 'Controller.php';
         $path = $this->laravel['path'] . '/' . $namespace . '/' . $controller;

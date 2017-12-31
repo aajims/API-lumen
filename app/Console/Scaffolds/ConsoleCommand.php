@@ -48,38 +48,8 @@ class ConsoleCommand extends AbstractCommand
         }
         $this->files->makeDirectory(dirname($path), 0777, true, true);
         $this->files->put($path, $this->build($console));
-    }
 
-    /**
-     * Build class.
-     *
-     * @param string $console
-     *
-     * @return string|void
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     */
-    protected function build(string $console)
-    {
-        $template = $this->files->get($this->getTemplate());
-        $template = $this->replace($template, $console);
-
-        return $template;
-    }
-
-    protected function replace(string &$subject, string $console)
-    {
-        $namespace = $this->laravel->getNamespace();
-        $subject = str_replace(
-            'ExampleNamespace',
-            $this->getNamespace($namespace),
-            $subject
-        );
-        $class = ucwords(str_singular($console)) . self::SUFFIX;
-        $pattern = '/[A-Za-z]+?Class\b/';
-        $replacements = [$class, $namespace . self::SUFFIX];
-        $subject = preg_replace_array($pattern, $replacements, $subject);
-
-        return $subject;
+        $this->info($this->type . ' created successfully.');
     }
 
     /**

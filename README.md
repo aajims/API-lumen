@@ -6,6 +6,7 @@
 
 ***
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/43a3f904740143fa8dc66d48a3732fe0)](https://www.codacy.com/app/imajinyun/lumen-api?utm_source=github.com&utm_medium=referral&utm_content=imajinyun/lumen-api&utm_campaign=badger)
 [![Build Status](https://travis-ci.org/imajinyun/lumen-api.svg?branch=master)](https://travis-ci.org/imajinyun/lumen-api)
 [![codecov](https://codecov.io/gh/imajinyun/lumen-api/branch/master/graph/badge.svg)](https://codecov.io/gh/imajinyun/lumen-api)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/imajinyun/lumen-api/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/imajinyun/lumen-api/?branch=master)

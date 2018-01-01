@@ -23,7 +23,7 @@ class ExampleController extends BarController
     {
         $bar = config('bar');
         $user = DB::connection('homestead')
-                  ->select('SELECT * FROM user LIMIT 10');
+                  ->select('SELECT * FROM users LIMIT 10');
         $array = [
             'bar'  => $bar,
             'user' => $user,

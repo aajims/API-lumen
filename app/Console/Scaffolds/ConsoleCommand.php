@@ -38,7 +38,6 @@ class ConsoleCommand extends AbstractCommand
 
     public function handle()
     {
-        dd($this->getOptions());
         $console = $this->getConsoleName();
         $path = $this->getPath($console);
 

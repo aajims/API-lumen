@@ -4,16 +4,16 @@ namespace App\Console\Scaffolds;
 
 use Symfony\Component\Console\Input\InputOption;
 
-class ControllerCommand extends AbstractCommand
+class ModelCommand extends AbstractCommand
 {
-    const SUFFIX = 'Controller';
+    const SUFFIX = 'Model';
 
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'make:controller';
+    protected $name = 'make:model';
 
     /**
      * The console command signature.
@@ -22,7 +22,7 @@ class ControllerCommand extends AbstractCommand
      */
     protected $signature
         = '
-        make:controller {module : Name of the module} {controller : Name of the controller}
+        make:model {database : Name of the database} {model : Name of the model}
     ';
 
     /**
@@ -30,14 +30,14 @@ class ControllerCommand extends AbstractCommand
      *
      * @var string
      */
-    protected $description = 'Create a new controller class';
+    protected $description = 'Create a new model class';
 
     /**
      * The console command type.
      *
      * @var string
      */
-    protected $type = 'Controller';
+    protected $type = 'Model';
 
     /**
      * Handle the console command.
@@ -47,9 +47,9 @@ class ControllerCommand extends AbstractCommand
      */
     public function handle()
     {
-        $module = $this->getModuleName();
-        $controller = $this->getControllerName();
-        $path = $this->getPath($module, $controller);
+        $database = $this->getDatabaseName();
+        $model = $this->getModelName();
+        $path = $this->getPath($database, $model);
 
         if ($this->files->exists($path)) {
             $this->error($this->type . ' already exists.');
@@ -57,7 +57,7 @@ class ControllerCommand extends AbstractCommand
             return false;
         }
         $this->files->makeDirectory(dirname($path), 0777, true, true);
-        $this->files->put($path, $this->build($controller, $module));
+        $this->files->put($path, $this->build($model, $database));
 
         $this->info($this->type . ' created successfully.');
     }
@@ -73,32 +73,32 @@ class ControllerCommand extends AbstractCommand
     public function getNamespace(string $module, string $namespace = '')
     {
         $module = ucwords(str_singular(strtolower($module)));
-        $default = sprintf('Http\%s\Controllers', $module);
+        $default = sprintf('Models\%s', $module);
         $namespace = $namespace ? ($namespace . $default) : $default;
 
         return $namespace;
     }
 
     /**
-     * Get the console command module name.
+     * Get the console command database name.
      *
      * @return string
      */
-    protected function getModuleName()
+    protected function getDatabaseName()
     {
-        $name = trim($this->argument('module'));
+        $name = trim($this->argument('database'));
 
         return $name;
     }
 
     /**
-     * Get the console command controller name.
+     * Get the console command model name.
      *
      * @return string
      */
-    protected function getControllerName()
+    protected function getModelName()
     {
-        $name = trim($this->argument('controller'));
+        $name = trim($this->argument('model'));
 
         return $name;
     }
@@ -106,16 +106,16 @@ class ControllerCommand extends AbstractCommand
     /**
      * Get the destination class path.
      *
-     * @param string $module
-     * @param string $controller
+     * @param string $database
+     * @param string $model
      *
      * @return string
      */
-    protected function getPath(string $module, string $controller)
+    protected function getPath(string $database, string $model)
     {
-        $namespace = $this->getNamespace($module);
+        $namespace = $this->getNamespace($database);
         $namespace = str_replace('\\', '/', $namespace);
-        $controller = $controller . 'Controller.php';
+        $controller = $model . 'Model.php';
         $path = $this->laravel['path'] . '/' . $namespace . '/' . $controller;
 
         return $path;
@@ -128,7 +128,7 @@ class ControllerCommand extends AbstractCommand
      */
     protected function getTemplate()
     {
-        return __DIR__ . '/templates/controller.tpl';
+        return __DIR__ . '/templates/model.tpl';
     }
 
     /**
@@ -143,7 +143,7 @@ class ControllerCommand extends AbstractCommand
                 'resource',
                 null,
                 InputOption::VALUE_NONE,
-                'Generate a resource controller class.',
+                'Generate a resource model class.',
             ],
         ];
     }

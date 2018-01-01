@@ -32,14 +32,19 @@ class AuthenticateTest extends TestCase
     }
 
     /**
-     * Test user token information.
+     * Test some action.
      */
-    public function testInfoAction()
+    public function testSomeAction()
     {
         $parameter = ['token' => 'abc.xyz.test'];
-        $response = $this->call('GET', '/auth/info', $parameter);
+        foreach (['/auth/info', '/auth/user'] as $item) {
+            $response = $this->call('GET', $item, $parameter);
 
-        self::assertEquals(Response::HTTP_UNAUTHORIZED, $response->status());
+            self::assertEquals(
+                Response::HTTP_UNAUTHORIZED,
+                $response->status()
+            );
+        }
     }
 
     /**

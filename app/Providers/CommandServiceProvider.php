@@ -4,11 +4,11 @@ namespace App\Providers;
 
 use App\Console\Scaffolds\ConsoleCommand;
 use App\Console\Scaffolds\ControllerCommand;
+use App\Console\Scaffolds\ModelCommand;
 use Illuminate\Support\ServiceProvider;
 
 class CommandServiceProvider extends ServiceProvider
 {
-
     /**
      * Some development environment commands.
      *
@@ -18,6 +18,7 @@ class CommandServiceProvider extends ServiceProvider
         = [
             'Console'    => 'command.console.make',
             'Controller' => 'command.controller.make',
+            'Model'      => 'command.model.make',
         ];
 
     /**
@@ -70,6 +71,18 @@ class CommandServiceProvider extends ServiceProvider
         if ($this->app->environment() !== 'production') {
             $this->app->singleton('command.controller.make', function ($app) {
                 return new ControllerCommand($app['files']);
+            });
+        }
+    }
+
+    /**
+     * Register model command.
+     */
+    private function registerModelCommand()
+    {
+        if ($this->app->environment() !== 'production') {
+            $this->app->singleton('command.model.make', function ($app) {
+                return new ModelCommand($app['files']);
             });
         }
     }

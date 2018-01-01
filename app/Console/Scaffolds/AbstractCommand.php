@@ -46,7 +46,11 @@ class AbstractCommand extends Command
 
         if ($module) {
             $namespace = $this->getNamespace($module, $namespace);
-            $replacements = [$module . static::SUFFIX, $class];
+            if (preg_match('/\bModels\b/', $namespace)) {
+                $replacements = [$class];
+            } else {
+                $replacements = [$class, $module . static::SUFFIX];
+            }
         } else {
             $namespace = $this->getNamespace($namespace);
             $replacements = [$class, $namespace . static::SUFFIX];

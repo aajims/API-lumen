@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Bar\Controllers;
+namespace App\Http\User\Controllers;
 
 use App\Traits\ResultsetTrait;
 use Illuminate\Support\Facades\DB;
 
-class ExampleController extends BarController
+class ExampleController extends AbstractController
 {
     use ResultsetTrait;
 

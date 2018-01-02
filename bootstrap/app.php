@@ -105,44 +105,7 @@ $app->configure('jwt');
 |
 */
 
-$routes = [
-    'auth' => [
-        'prefix'     => 'auth',
-        'namespace'  => 'App\Http\Auth\Controllers',
-        'middleware' => 'auth:api',
-    ],
-    'bar'  => [
-        'prefix'     => 'bar',
-        'namespace'  => 'App\Http\Bar\Controllers',
-        'middleware' => 'auth:api',
-    ],
-
-    'foo' => [
-        'prefix'     => 'foo',
-        'namespace'  => 'App\Http\Foo\Controllers',
-        'middleware' => 'auth:api',
-    ],
-];
-$app->router->get(
-    '/',
-    'App\Http\Auth\Controllers\DefaultController@listAction'
-);
-$app->router->get('/version', function () use ($app) {
-    return $app->router->app->version();
-});
-$app->router->addRoute(
-    ['GET', 'POST'],
-    '/auth/authorize',
-    'App\Http\Auth\Controllers\AuthenticateController@authorizeAction'
-);
-
-foreach ($routes as $key => $item) {
-    $app->router->group($item, function ($router) use ($app, $key) {
-        $app->configure($key);
-
-        require __DIR__ . '/../routes/' . $key . '.php';
-    });
-}
+require __DIR__ . '/../routes/api.php';
 
 /*
 |--------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Bar\Http;
+namespace Tests\User\Http;
 
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
@@ -15,7 +15,7 @@ class ExampleTest extends TestCase
      */
     public function testExample()
     {
-        $this->get('/bar');
+        $this->get('/user');
 
         $expect = '{"code":200105,"msg":"Unauthorized","data":[]}';
         self::assertEquals($expect, $this->response->getContent());

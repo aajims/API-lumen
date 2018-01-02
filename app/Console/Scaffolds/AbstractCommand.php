@@ -41,7 +41,7 @@ class AbstractCommand extends Command
         string $module = ''
     ) {
         $namespace = $this->laravel->getNamespace();
-        $class = ucwords(str_singular($class)) . static::SUFFIX;
+        $class = $class . static::SUFFIX;
         $pattern = '/[A-Za-z]+?Class\b/';
 
         if ($module) {
@@ -49,7 +49,7 @@ class AbstractCommand extends Command
             if (preg_match('/\bModels\b/', $namespace)) {
                 $replacements = [$class];
             } else {
-                $replacements = [$class, $module . static::SUFFIX];
+                $replacements = [$class, 'Abstract' . static::SUFFIX];
             }
         } else {
             $namespace = $this->getNamespace($namespace);

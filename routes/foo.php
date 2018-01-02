@@ -1,8 +1,12 @@
 <?php
 
+/**
+ * @var \Laravel\Lumen\Routing\Router $router
+ */
+
 /*
 |--------------------------------------------------------------------------
-| Application Routes
+| Foo Application Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register all of the routes for an application.

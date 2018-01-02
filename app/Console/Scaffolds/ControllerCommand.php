@@ -47,8 +47,8 @@ class ControllerCommand extends AbstractCommand
      */
     public function handle()
     {
-        $module = $this->getModuleName();
-        $controller = $this->getControllerName();
+        $module = ucwords(str_singular($this->getModuleName()));
+        $controller = ucwords(str_singular($this->getControllerName()));
         $path = $this->getPath($module, $controller);
 
         if ($this->files->exists($path)) {

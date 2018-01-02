@@ -38,7 +38,7 @@ trait ResultsetTrait
      */
     public static function warningResponse(
         array $array = [],
-        string $msg = 'OK',
+        string $msg = 'NO',
         int $code = 40000,
         int $status = 200
     )

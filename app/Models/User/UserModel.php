@@ -9,6 +9,12 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
+/**
+ * UserModel Class.
+ *
+ * @property string $name
+ * @property string $email
+ */
 class UserModel extends Model implements
     AuthenticatableContract,
     AuthorizableContract,
@@ -63,5 +69,17 @@ class UserModel extends Model implements
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    /**
+     * Set password attribute.
+     *
+     * @param string $password
+     *
+     * @return void
+     */
+    public function setPasswordAttribute(string $password)
+    {
+        $this->attributes['password'] = bcrypt($password);
     }
 }

@@ -2,8 +2,12 @@
 
 namespace App\Http\User\Controllers;
 
+use App\Events\SendEmailEvent;
+use App\Models\User\UserModel;
 use App\Traits\ResultsetTrait;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event;
 
 class UserController extends AbstractController
 {
@@ -18,8 +22,21 @@ class UserController extends AbstractController
      */
     public function createAction(Request $request)
     {
-        $array = [];
+        $this->validate($request, [
+            'email'    => 'required|email|max:255',
+            'password' => 'required',
+        ]);
 
-        return self::successResponse($array);
+        $attributes = $request->only('email', 'password');
+
+        try {
+            $object = factory(UserModel::class)->create($attributes);
+        } catch (QueryException $e) {
+            return self::warningResponse([], $e->getMessage());
+        }
+        Event::fire(new SendEmailEvent($object));
+        $user = $object->toArray();
+
+        return self::successResponse($user);
     }
 }

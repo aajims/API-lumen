@@ -40,6 +40,10 @@ $app->router->addRoute(
     '/auth/authorize',
     'App\Http\Auth\Controllers\AuthenticateController@authorizeAction'
 );
+$app->router->post(
+    '/user/register',
+    'App\Http\User\Controllers\UserController@createAction'
+);
 
 foreach ($routes as $key => $item) {
     $app->router->group($item, function ($router) use ($app, $key) {

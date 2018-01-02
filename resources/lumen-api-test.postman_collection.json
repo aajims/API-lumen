@@ -65,7 +65,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://dev.lumen.com/bar/list",
+					"raw": "http://dev.lumen.com/user/list",
 					"protocol": "http",
 					"host": [
 						"dev",
@@ -73,7 +73,7 @@
 						"com"
 					],
 					"path": [
-						"bar",
+						"user",
 						"list"
 					]
 				},

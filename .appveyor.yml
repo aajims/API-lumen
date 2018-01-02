@@ -13,11 +13,8 @@ environment:
     - dependencies: highest
       php_version: 7.2
   MYSQL_PATH: C:\Program Files\MySql\MySQL Server 5.7
-  MYSQL_PORT: tcp://localhost:3306
-  MYSQL_HOST: localhost
   MYSQL_USER: root
   MYSQL_PASSWORD: Password12!
-  MYSQL_DATABASE: homestead
 
 matrix:
   fast_finish: true
@@ -61,9 +58,9 @@ install:
 
 build_script:
   # mysql
-  - mysqladmin --host=%MYSQL_HOST% --user=%MYSQL_USER% --password=%MYSQL_PASSWORD% "CREATE DATABASE homestead;"
-  - mysqladmin --host=%MYSQL_HOST% --user=%MYSQL_USER% --password=%MYSQL_PASSWORD% "CREATE USER 'homestead'@'%' IDENTIFIED BY 'secret';"
-  - mysqladmin --host=%MYSQL_HOST% --user=%MYSQL_USER% --password=%MYSQL_PASSWORD% "GRANT ALL PRIVILEGES ON *.* TO 'homestead'@'%' WITH GRANT OPTION;"
+  - mysql -e "CREATE DATABASE homestead;" --user=%MYSQL_USER% --password=%MYSQL_PASSWORD%
+  - mysql -e "CREATE USER 'homestead'@'%' IDENTIFIED BY 'secret';" --user=%MYSQL_USER% --password=%MYSQL_PASSWORD%
+  - mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'homestead'@'%' WITH GRANT OPTION;" --user=%MYSQL_USER% --password=%MYSQL_PASSWORD%
 
 test_script:
   - cd C:\projects\lumen-api

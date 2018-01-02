@@ -3,16 +3,19 @@
 namespace Tests\Auth\Http;
 
 use Illuminate\Http\Response;
+use Laravel\Lumen\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
 class AuthenticateTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /**
      * Test access default.
      *
      * @return void
      */
-    public function testDefaultAction()
+    public function testHomeAction()
     {
         $this->get('/');
 
@@ -39,7 +42,7 @@ class AuthenticateTest extends TestCase
     public function testSomeAction()
     {
         $parameter = ['token' => 'abc.xyz.test'];
-        foreach (['/auth/info', '/auth/user'] as $item) {
+        foreach (['/auth/info', '/auth/user', '/auth/refresh'] as $item) {
             $response = $this->call('GET', $item, $parameter);
 
             self::assertEquals(

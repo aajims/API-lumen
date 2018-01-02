@@ -61,12 +61,16 @@ install:
 
 build_script:
   # mysql
-  - mysql -u root -p=%MYSQL_PASSWORD% -e "CREATE DATABASE homestead;"
-  - mysql -u root -p=%MYSQL_PASSWORD% -e "CREATE USER 'homestead'@'%' IDENTIFIED BY 'secret';"
-  - mysql -u root -p=%MYSQL_PASSWORD% -e "GRANT ALL PRIVILEGES ON *.* TO 'homestead'@'%' WITH GRANT OPTION;"
+  - mysqladmin --host=%MYSQL_HOST% --user=%MYSQL_USER% --password=%MYSQL_PASSWORD% "CREATE DATABASE homestead;"
+  - mysqladmin --host=%MYSQL_HOST% --user=%MYSQL_USER% --password=%MYSQL_PASSWORD% "CREATE USER 'homestead'@'%' IDENTIFIED BY 'secret';"
+  - mysqladmin --host=%MYSQL_HOST% --user=%MYSQL_USER% --password=%MYSQL_PASSWORD% "GRANT ALL PRIVILEGES ON *.* TO 'homestead'@'%' WITH GRANT OPTION;"
 
 test_script:
   - cd C:\projects\lumen-api
+  - php --version
+  - php artisan migrate --env=local --database=homestead --no-interaction -vvv
+  - php artisan db:seed --env=local --no-interaction -vvv
+  - php artisan migrate:rollback --env=local --no-interaction -vvv
   - composer --version
   - mysql --version
   - vendor/bin/phpunit -c phpunit.xml.dist

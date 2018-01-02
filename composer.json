@@ -1,6 +1,6 @@
 {
   "name": "imajinyun/lumen-api",
-  "description": "This is a RESTful API micro service based on Lumen framework.",
+  "description": "This is a RESTful API micro application based on Lumen framework.",
   "keywords": [
     "lumen",
     "lumen-api"

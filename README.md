@@ -7,6 +7,7 @@
 ***
 
 [![Travis Branch Build Status](https://img.shields.io/travis/imajinyun/lumen-api/master.svg?style=flat-square)](https://travis-ci.org/imajinyun/lumen-api)
+[![AppVeyor Branch Build Status](https://img.shields.io/appveyor/ci/imajinyun/lumen-api/master.svg?logo=appveyor&style=flat-square)](https://ci.appveyor.com/project/imajinyun/lumen-api)
 [![Codecov Branch](https://img.shields.io/codecov/c/github/imajinyun/lumen-api/master.svg?style=flat-square)](https://codecov.io/gh/imajinyun/lumen-api)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/imajinyun/lumen-api/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/imajinyun/lumen-api)
 [![StyleCI](https://styleci.io/repos/115325381/shield?branch=master)](https://styleci.io/repos/115325381)

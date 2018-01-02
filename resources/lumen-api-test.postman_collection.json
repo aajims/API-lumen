@@ -162,7 +162,17 @@
 				},
 				"method": "POST",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "lang",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
 					"raw": "http://dev.lumen.com/auth/user",
 					"protocol": "http",
@@ -207,6 +217,48 @@
 					"path": [
 						"auth",
 						"info"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "用户请求注册",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "hello@qq.com",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "world",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://dev.lumen.com/user/register",
+					"protocol": "http",
+					"host": [
+						"dev",
+						"lumen",
+						"com"
+					],
+					"path": [
+						"user",
+						"register"
 					]
 				},
 				"description": ""

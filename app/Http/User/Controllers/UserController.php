@@ -14,6 +14,13 @@ class UserController extends AbstractController
     use ResultsetTrait;
 
     /**
+     * UserController constructor.
+     */
+    public function __construct()
+    {
+    }
+
+    /**
      * User create action.
      *
      * @param \Illuminate\Http\Request $request
@@ -34,6 +41,7 @@ class UserController extends AbstractController
         } catch (QueryException $e) {
             return self::warningResponse([], $e->getMessage());
         }
+
         Event::fire(new SendEmailEvent($object));
         $user = $object->toArray();
 

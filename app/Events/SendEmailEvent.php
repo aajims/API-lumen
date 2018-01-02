@@ -2,12 +2,22 @@
 
 namespace App\Events;
 
-class ExampleEvent extends Event
+use App\Models\User\UserModel;
+
+class SendEmailEvent extends Event
 {
     /**
-     * Create a new event instance.
+     * @var \App\Models\User\UserModel
      */
-    public function __construct()
+    public $user;
+
+    /**
+     * SendEmailEvent constructor.
+     *
+     * @param \App\Models\User\UserModel $user
+     */
+    public function __construct(UserModel $user)
     {
+        $this->user = $user;
     }
 }

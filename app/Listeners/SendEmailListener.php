@@ -2,14 +2,14 @@
 
 namespace App\Listeners;
 
-use App\Events\ExampleEvent;
+use App\Events\SendEmailEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ExampleListener
+class SendEmailListener
 {
     /**
-     * Create the event listener.
+     * SendEmailListener constructor.
      */
     public function __construct()
     {
@@ -18,11 +18,12 @@ class ExampleListener
     /**
      * Handle the event.
      *
-     * @param  ExampleEvent $event
+     * @param  SendEmailEvent $event
      *
      * @return void
      */
-    public function handle(ExampleEvent $event)
+    public function handle(SendEmailEvent $event)
     {
+        $email = $event->user->email;
     }
 }

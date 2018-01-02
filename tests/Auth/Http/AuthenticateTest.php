@@ -16,6 +16,7 @@ class AuthenticateTest extends TestCase
     {
         $this->get('/');
 
+        $this->assertResponseOk();
         self::assertEquals(Response::HTTP_OK, $this->response->getStatusCode());
     }
 
@@ -26,8 +27,9 @@ class AuthenticateTest extends TestCase
     {
         $this->get('/version');
 
-        $this->assertEquals(
-            $this->app->version(), $this->response->getContent()
+        self::assertEquals(
+            $this->app->version(),
+            $this->response->getContent()
         );
     }
 

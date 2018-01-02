@@ -10,12 +10,9 @@ class ExampleListener
 {
     /**
      * Create the event listener.
-     *
-     * @return void
      */
     public function __construct()
     {
-        //
     }
 
     /**
@@ -27,6 +24,5 @@ class ExampleListener
      */
     public function handle(ExampleEvent $event)
     {
-        //
     }
 }

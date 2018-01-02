@@ -3,8 +3,10 @@
 namespace App\Listeners;
 
 use App\Events\SendEmailEvent;
+use App\Handler\EmailHandler;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Mail;
 
 class SendEmailListener
 {
@@ -18,12 +20,14 @@ class SendEmailListener
     /**
      * Handle the event.
      *
-     * @param  SendEmailEvent $event
+     * @param \App\Events\SendEmailEvent $event
      *
      * @return void
      */
     public function handle(SendEmailEvent $event)
     {
-        $email = $event->user->email;
+        $user = $event->user;
+
+        Mail::to('imajinyun@163.com')->send(new EmailHandler($user));
     }
 }

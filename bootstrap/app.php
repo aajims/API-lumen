@@ -81,6 +81,7 @@ $app->register(\App\Providers\AuthServiceProvider::class);
 $app->register(\App\Providers\EventServiceProvider::class);
 $app->register(\Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 $app->register(\App\Providers\CommandServiceProvider::class);
+$app->register(\Illuminate\Mail\MailServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -93,6 +94,8 @@ $app->register(\App\Providers\CommandServiceProvider::class);
 
 $app->configure('auth');
 $app->configure('jwt');
+$app->configure('services');
+$app->configure('mail');
 
 /*
 |--------------------------------------------------------------------------

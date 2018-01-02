@@ -7,6 +7,7 @@ use App\Models\User\UserModel;
 use App\Traits\ResultsetTrait;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 
 class UserController extends AbstractController
@@ -46,5 +47,23 @@ class UserController extends AbstractController
         $user = $object->toArray();
 
         return self::successResponse($user);
+    }
+
+    /**
+     * User list action.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function listAction()
+    {
+        $config = config('user');
+        $user = DB::connection('homestead')
+                  ->select('SELECT * FROM users LIMIT 10');
+        $array = [
+            'config' => $config,
+            'user'   => $user,
+        ];
+
+        return self::successResponse($array);
     }
 }

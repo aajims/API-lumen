@@ -28,9 +28,10 @@ $routes = [
         'middleware' => 'auth:api',
     ],
 ];
+$action = 'App\Http\%s\Controllers\%sController@%sAction';
 $app->router->get(
     '/',
-    'App\Http\Auth\Controllers\DefaultController@listAction'
+    sprintf($action, 'Auth', 'Authenticate', 'home')
 );
 $app->router->get('/version', function () use ($app) {
     return $app->version();
@@ -38,11 +39,11 @@ $app->router->get('/version', function () use ($app) {
 $app->router->addRoute(
     ['GET', 'POST'],
     '/auth/authorize',
-    'App\Http\Auth\Controllers\AuthenticateController@authorizeAction'
+    sprintf($action, 'Auth', 'Authenticate', 'authorize')
 );
 $app->router->post(
     '/user/register',
-    'App\Http\User\Controllers\UserController@createAction'
+    sprintf($action, 'User', 'User', 'create')
 );
 
 foreach ($routes as $key => $item) {

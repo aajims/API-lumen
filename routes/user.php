@@ -14,8 +14,8 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
+
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
-$router->get('list', 'ExampleController@listAction');
-$router->get('log', 'ExampleController@logAction');
+$router->get('list', 'UserController@listAction');

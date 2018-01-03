@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User\UserModel;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -11,24 +12,24 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\User\UserModel::class)->create([
+        factory(UserModel::class)->create([
             'email'    => 'lumen@qq.com',
-            'password' => app('hash')->make('lumen'),
+            'password' => 'lumen',
         ]);
 
-        factory(\App\Models\User\UserModel::class)->create([
+        factory(UserModel::class)->create([
             'email'    => 'phalcon@qq.com',
-            'password' => app('hash')->make('phalcon'),
+            'password' => 'phalcon',
         ]);
 
-        factory(\App\Models\User\UserModel::class)->create([
+        factory(UserModel::class)->create([
             'email'    => 'symfony@qq.com',
-            'password' => app('hash')->make('symfony'),
+            'password' => 'symfony',
         ]);
 
-        factory(\App\Models\User\UserModel::class)->create([
+        factory(UserModel::class)->create([
             'email'    => 'laravel@qq.com',
-            'password' => app('hash')->make('laravel'),
+            'password' => 'laravel',
         ]);
     }
 }

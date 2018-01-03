@@ -20,3 +20,4 @@ $router->get('/', function () use ($router) {
 });
 
 $router->get('list', 'ExampleController@listAction');
+$router->post('transaction', 'ExampleController@transactionAction');

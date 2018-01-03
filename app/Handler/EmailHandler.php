@@ -30,9 +30,9 @@ class EmailHandler extends Mailable
     {
         \Log::info('email information', [config('mail')]);
         $address = config('address', 'majinyun@xiaohe.com');
-        $subject = 'this is a demo.';
-        $name = 'Lumen';
-        $this->view('email.activate')
+        $subject = 'This is a send mail demo.';
+        $name = 'A micro application based on Lumen framework';
+        $this->view('vendor.email.activate')
              ->from($address, $name)
              ->replyTo($address, $name)
              ->subject($subject)

@@ -34,7 +34,6 @@ class UserController extends AbstractController
             'email'    => 'required|email|max:255',
             'password' => 'required',
         ]);
-
         $attributes = $request->only('email', 'password');
 
         try {

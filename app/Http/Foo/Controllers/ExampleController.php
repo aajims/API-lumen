@@ -21,12 +21,12 @@ class ExampleController extends FooController
      */
     public function listAction()
     {
-        $foo = config('foo');
-        $user = DB::connection('framework')
-                  ->select('SELECT * FROM users LIMIT 10');
+        $config = config('foo');
+        $list = DB::connection('framework')
+                  ->select('SELECT * FROM logs LIMIT 10');
         $array = [
-            'foo'  => $foo,
-            'user' => $user,
+            'config' => $config,
+            'list'   => $list,
         ];
 
         return self::successResponse($array);

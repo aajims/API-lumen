@@ -19,4 +19,4 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('/list', 'ExampleController@listAction');
+$router->get('list', 'ExampleController@listAction');

@@ -18,6 +18,7 @@ class ExampleJob extends Job
      */
     public function handle()
     {
-        //
+        $datetime = date('Y-m-d H:i:s');
+        \Log::info($datetime);
     }
 }

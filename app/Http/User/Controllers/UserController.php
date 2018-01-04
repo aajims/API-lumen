@@ -3,6 +3,7 @@
 namespace App\Http\User\Controllers;
 
 use App\Events\SendEmailEvent;
+use App\Jobs\ExampleJob;
 use App\Jobs\SendEmailReminderJob;
 use App\Models\User\UserModel;
 use App\Traits\ResultsetTrait;
@@ -10,6 +11,9 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Queue;
+use Predis\Client;
+use Predis\Connection\ConnectionException;
 
 class UserController extends AbstractController
 {
@@ -86,5 +90,31 @@ class UserController extends AbstractController
         }
 
         return self::successResponse();
+    }
+
+    /**
+     * @throws \Exception
+     * @throws \Throwable
+     */
+    public function pushAction()
+    {
+        $queue = Queue::push(new ExampleJob(), ['time' => time()]);
+
+        return self::successResponse([$queue], '推送队列成功');
+    }
+
+    public function redisAction()
+    {
+        $client = new Client();
+
+        try {
+            $client->connect();
+        } catch (ConnectionException $e) {
+            return self::warningResponse([], $e->getMessage());
+        } catch (\Exception $e) {
+            return self::warningResponse([], $e->getMessage());
+        }
+
+        return self::successResponse([], 'Redis');
     }
 }

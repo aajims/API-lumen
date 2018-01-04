@@ -20,3 +20,5 @@ $router->get('/', function () use ($router) {
 });
 $router->get('list', 'UserController@listAction');
 $router->get('email/{id:[0-9]+}', 'UserController@emailAction');
+$router->get('push', 'UserController@pushAction');
+$router->get('redis', 'UserController@redisAction');

@@ -76,7 +76,7 @@ class ExampleController extends FooController
             } catch (\Exception $exception) {
                 return self::warningResponse([], $exception->getMessage());
             }
-        });
+        }, 5);
 
         return self::successResponse([$request->all()], '数据更新成功');
     }

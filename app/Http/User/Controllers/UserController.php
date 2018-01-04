@@ -3,6 +3,7 @@
 namespace App\Http\User\Controllers;
 
 use App\Events\SendEmailEvent;
+use App\Jobs\SendEmailReminderJob;
 use App\Models\User\UserModel;
 use App\Traits\ResultsetTrait;
 use Illuminate\Database\QueryException;
@@ -43,6 +44,7 @@ class UserController extends AbstractController
         }
 
         Event::fire(new SendEmailEvent($object));
+        $this->dispatch(new SendEmailReminderJob($object));
         $user = $object->toArray();
 
         return self::successResponse($user);
@@ -64,5 +66,25 @@ class UserController extends AbstractController
         ];
 
         return self::successResponse($array);
+    }
+
+    /**
+     * User send email action.
+     *
+     * @param int $id
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function emailAction($id)
+    {
+        try {
+            $user = UserModel::findOrFail($id);
+            $job = (new SendEmailReminderJob($user))->onQueue('default');
+            $this->dispatch($job);
+        } catch (\Exception $e) {
+            return self::warningResponse([], $e->getMessage());
+        }
+
+        return self::successResponse();
     }
 }

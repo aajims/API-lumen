@@ -19,3 +19,4 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 $router->get('list', 'UserController@listAction');
+$router->get('email/{id:[0-9]+}', 'UserController@emailAction');

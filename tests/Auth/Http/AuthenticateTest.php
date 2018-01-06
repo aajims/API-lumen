@@ -3,13 +3,10 @@
 namespace Tests\Auth\Http;
 
 use Illuminate\Http\Response;
-use Laravel\Lumen\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
 class AuthenticateTest extends TestCase
 {
-    use DatabaseMigrations;
-
     /**
      * Test access default.
      *

@@ -14,7 +14,7 @@
 [![Codacy Branch Grade](https://img.shields.io/codacy/grade/655fc73e786543bd93ba84ec2723d588/master.svg?style=flat-square)](https://www.codacy.com/app/imajinyun/lumen-api/dashboard)
 [![PHP from Packagist](https://img.shields.io/packagist/php-v/imajinyun/lumen-api.svg?style=flat-square)](http://php.net/supported-versions.php)
 
-🔥 This is a RESTful API micro application based on Lumen framework.
+🌹 This is a RESTful API micro application based on Lumen framework.
 
 ## Lumen Introduction
 

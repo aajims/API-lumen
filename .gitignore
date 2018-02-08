@@ -1,5 +1,4 @@
 /.idea
-/build
 /database/database.sqlite
 .env
 /.phpstorm.meta.php

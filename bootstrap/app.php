@@ -18,9 +18,8 @@ try {
 | application as an "IoC" container and router for this framework.
 |
 */
-
 $app = new \Laravel\Lumen\Application(
-    realpath(__DIR__ . '/../')
+    dirname(__DIR__ . '/')
 );
 
 $app->withFacades();

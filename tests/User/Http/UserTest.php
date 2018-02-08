@@ -20,6 +20,6 @@ class UserTest extends TestCase
             'password' => $prefix,
         ];
         $this->call('POST', '/user/register', $parameter);
-        self::assertResponseOk();
+        $this->assertResponseOk();
     }
 }

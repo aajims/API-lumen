@@ -54,14 +54,6 @@ class AuthenticateTest extends TestCase
     {
         $parameter = ['email' => 'lumen@qq.com', 'password' => 'lumen'];
         $response = $this->call('POST', '/auth/authorize', $parameter);
-
-        self::assertContains(
-            $response->status(),
-            [
-                Response::HTTP_BAD_REQUEST,
-                Response::HTTP_INTERNAL_SERVER_ERROR,
-                Response::HTTP_OK,
-            ]
-        );
+        self::assertEquals($response->status(), Response::HTTP_OK);
     }
 }

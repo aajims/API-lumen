@@ -9,8 +9,6 @@ class AuthenticateTest extends TestCase
 {
     /**
      * Test access default.
-     *
-     * @return void
      */
     public function testHomeAction()
     {
@@ -51,8 +49,6 @@ class AuthenticateTest extends TestCase
 
     /**
      * Test user authorize.
-     *
-     * @return void
      */
     public function testAuthorizeAction()
     {
@@ -62,6 +58,7 @@ class AuthenticateTest extends TestCase
         self::assertContains(
             $response->status(),
             [
+                Response::HTTP_BAD_REQUEST,
                 Response::HTTP_INTERNAL_SERVER_ERROR,
                 Response::HTTP_OK,
             ]

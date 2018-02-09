@@ -2,14 +2,12 @@
 
 namespace Tests\Auth\Http;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class AuthenticateTest extends TestCase
 {
-    /**
-     * Test access default.
-     */
     public function testHomeAction()
     {
         $this->get('/');
@@ -18,9 +16,6 @@ class AuthenticateTest extends TestCase
         self::assertEquals(Response::HTTP_OK, $this->response->getStatusCode());
     }
 
-    /**
-     * Test user client get version of Lumen framework.
-     */
     public function testVersionAction()
     {
         $this->get('/version');
@@ -31,9 +26,6 @@ class AuthenticateTest extends TestCase
         );
     }
 
-    /**
-     * Test some action.
-     */
     public function testSomeAction()
     {
         $parameter = ['token' => 'abc.xyz.test'];
@@ -47,13 +39,16 @@ class AuthenticateTest extends TestCase
         }
     }
 
-    /**
-     * Test user authorize.
-     */
     public function testAuthorizeAction()
     {
         $parameter = ['email' => 'lumen@qq.com', 'password' => 'lumen'];
         $response = $this->call('POST', '/auth/authorize', $parameter);
-        self::assertEquals($response->status(), Response::HTTP_OK);
+        self::assertInstanceOf(JsonResponse::class, $response);
+        self::assertEquals(Response::HTTP_OK, $response->status());
+    }
+
+    protected function parseJson(JsonResponse $jsonResponse)
+    {
+        return json_decode($jsonResponse->getContent());
     }
 }

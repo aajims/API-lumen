@@ -7,23 +7,21 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    private $user;
-
-    public function setUp()
+    public function testCreateUser()
     {
-        parent::setUp();
-
-        $prefix = random_int(10000, 999999);
+        $prefix = random_int(100000, 99999999);
         $suffix = array_random(['a.a', 'b.b', 'c.c', 'd.d', 'e.e']);
         $parameter = [
             'email'    => $prefix . '@' . $suffix,
             'password' => $prefix,
         ];
 
-        $this->user = factory(UserModel::class)->create([
+        $user = factory(UserModel::class)->create([
             'email'    => $parameter['email'],
             'password' => $parameter['password'],
         ]);
+        self::assertGreaterThan(0, $user->id);
+        self::assertEquals($parameter['email'], $user->email);
     }
 
     public function testExistUser()

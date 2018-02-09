@@ -44,6 +44,7 @@ class AuthenticateTest extends TestCase
         $parameter = ['email' => 'lumen@qq.com', 'password' => 'lumen'];
         $response = $this->call('POST', '/auth/authorize', $parameter);
         self::assertInstanceOf(JsonResponse::class, $response);
+        self::assertEquals(Response::HTTP_OK, $response->status());
     }
 
     protected function parseJson(JsonResponse $jsonResponse)

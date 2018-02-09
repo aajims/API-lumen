@@ -35,6 +35,7 @@ install:
   - travis_retry composer install --no-interaction --prefer-source
 
 before_script:
+  - sudo chmod -R 777 storage
   - cp .env.example .env
 
   # show some versions and env information

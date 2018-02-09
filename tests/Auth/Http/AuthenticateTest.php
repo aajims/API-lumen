@@ -2,6 +2,7 @@
 
 namespace Tests\Auth\Http;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Tests\TestCase;
 
@@ -42,7 +43,13 @@ class AuthenticateTest extends TestCase
     {
         $parameter = ['email' => 'lumen@qq.com', 'password' => 'lumen'];
         $response = $this->call('POST', '/auth/authorize', $parameter);
-        print_r([$response->getStatusCode(), $response->getContent()]);
+        $data = $this->parseJson($response);
+        self::assertEquals(20000, $data->code);
         self::assertEquals($response->status(), Response::HTTP_OK);
+    }
+
+    protected function parseJson(JsonResponse $jsonResponse)
+    {
+        return json_decode($jsonResponse->getContent());
     }
 }

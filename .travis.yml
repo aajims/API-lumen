@@ -45,7 +45,6 @@ before_script:
 
   - php artisan migrate --env=local --database=homestead --no-interaction -vvv
   - php artisan db:seed --env=local --no-interaction -vvv
-  - php artisan migrate:rollback --env=local --no-interaction -vvv
 
 script:
   - php vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover=storage/logs/clover.xml

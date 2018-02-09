@@ -37,7 +37,6 @@ install:
 before_script:
   - sudo chmod -R 777 storage
   - cp .env.example .env
-  - php artisan key:generate
 
   # show some versions and env information
   - mysql --version

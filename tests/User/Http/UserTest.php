@@ -22,4 +22,9 @@ class UserTest extends TestCase
         $this->call('POST', '/user/register', $parameter);
         $this->assertResponseOk();
     }
+
+    public function testExistUser()
+    {
+        $this->seeInDatabase('users', ['email' => 'lumen@qq.com']);
+    }
 }

@@ -8,7 +8,7 @@ class UserTest extends TestCase
 {
     public function testCreateAction()
     {
-        $prefix = mt_rand(1000, 9999);
+        $prefix = random_int(1000, 9999);
         $suffix = array_random([
             'xiaohe.com',
             'gmail.com',

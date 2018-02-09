@@ -7,9 +7,6 @@ use Tests\TestCase;
 
 class AuthenticateTest extends TestCase
 {
-    /**
-     * Test access default.
-     */
     public function testHomeAction()
     {
         $this->get('/');
@@ -18,9 +15,6 @@ class AuthenticateTest extends TestCase
         self::assertEquals(Response::HTTP_OK, $this->response->getStatusCode());
     }
 
-    /**
-     * Test user client get version of Lumen framework.
-     */
     public function testVersionAction()
     {
         $this->get('/version');
@@ -31,9 +25,6 @@ class AuthenticateTest extends TestCase
         );
     }
 
-    /**
-     * Test some action.
-     */
     public function testSomeAction()
     {
         $parameter = ['token' => 'abc.xyz.test'];
@@ -47,13 +38,11 @@ class AuthenticateTest extends TestCase
         }
     }
 
-    /**
-     * Test user authorize.
-     */
     public function testAuthorizeAction()
     {
         $parameter = ['email' => 'lumen@qq.com', 'password' => 'lumen'];
         $response = $this->call('POST', '/auth/authorize', $parameter);
+        print_r([$response->getStatusCode(), $response->getContent()]);
         self::assertEquals($response->status(), Response::HTTP_OK);
     }
 }
